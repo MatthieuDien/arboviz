@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% Préambule cours %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[frenchb]{babel}
+
+\usepackage[top=2.5cm, bottom=2.5cm, right=3cm, left=3cm]{geometry}	%marges
+\usepackage{lscape}
+\usepackage{multicol}
+
+\bibliographystyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% En-tête et pieds de page %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %supprimer pieds de page et en-tête par défaut
+\usepackage{lastpage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%
+%%% Images %%%
+%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+%%%%%%%%%%%%%%
+
+\usepackage{color}
+\usepackage{eurosym}
+\usepackage{hyperref}
+\usepackage{listings}	%code
+\usepackage{color}
+\lstset{
+  language=Python,
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize ,
+  breakatwhitespace=true,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{green},
+  deletekeywords={},
+  escapeinside={},
+  extendedchars=false,
+  frame=single,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  morekeywords={},
+  numbers=left, %none, left, right
+  numbersep=5pt,
+  numberstyle=\tiny\color{black},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=2,
+  stringstyle=\color{red},
+  tabsize=2,
+  %title=\lstname
+  }
+
+\usepackage{tikz}
+\usepackage[inline]{asymptote}
+
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+
+\usepackage{amsthm}
+\newtheorem{thm}{Théorème}%[chapter]
+\newtheorem{dfn}{Définition}
+\newtheorem{cit}{Citation}
+\newtheorem{conj}{Conjecture}
+\newtheorem{prop}{Proposition}
+%\newtheorem{rmq}{Remarque}
+%\newtheorem{ex}{Exemple}[subsection]
+
+\usepackage{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%
+%%% Numérotation %%%
+%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{3}
+%\renewcommand{\thesection}{\Roman{section}-}
+%\renewcommand{\thesubsection}{\qquad\arabic{subsection})}
+%\renewcommand{\thesubsubsection}{\qquad\qquad\alph{subsubsection}.}
+%%%%%%%%%%%%%%%%%%%%

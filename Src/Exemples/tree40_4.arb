@@ -1,0 +1,9 @@
+0. 1.
+0.1 1.
+0.1 0.55
+0.1 0.325
+0.2125 0.325
+0.26875 0.325
+generated: size =40
+
+Node(T,1)[Node(T,2)[Leaf(T,5)],Node(T,3)[Node(T,6)[Leaf(T,10)],Leaf(T,7),Node(T,8)[Leaf(T,11),Leaf(T,12),Leaf(T,13),Node(T,14)[Leaf(T,18)],Node(T,15)[Node(T,19)[Leaf(T,23),Node(T,24)[Node(T,28)[Node(T,32)[Node(T,34)[Leaf(T,37),Leaf(T,38),Leaf(T,39)]],Node(T,33)[Leaf(T,35),Node(T,36)[Leaf(T,40)]]],Leaf(T,29)],Node(T,25)[Leaf(T,30)],Leaf(T,26)]]]],Node(T,4)[Node(T,9)[Node(T,16)[Leaf(T,20),Node(T,21)[Node(T,27)[Leaf(T,31)]],Leaf(T,22)],Leaf(T,17)]]]

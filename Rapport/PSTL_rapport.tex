@@ -1,0 +1,47 @@
+\documentclass[a4paper,oneside]{report}
+
+\input{preambule}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Page de garde %%%
+%%%%%%%%%%%%%%%%%%%%%
+\title{Visualisation d'arbres de grandes tailles\\ Rapport de PSTL}
+\author{Érika Baëna\\ erika.baena@etu.upmc.fr \and Diana Malabard\\ diana.malabard@etu.upmc.fr \and Antoine Genitrini (encadrant)\\ antoine.genitrini@lip6.fr}
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%
+
+%\includeonly{PSTL_intro}
+
+%%%%%%%%%%%%%
+%%% Début %%%
+%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+%\frontmatter
+%\include{PSTL_remerciements}
+
+%\mainmatter
+%\part{Travail effectué}
+
+\abstract{\input{PSTL_intro}} %Présentation de la finalité du projet
+
+\include{PSTL_etatLieux} %Présentation des algos
+\include{PSTL_etudeDepart} %Présentation de l'étude préliminaire
+\include{PSTL_choixImplem} %Présentation des choix effectués
+\include{PSTL_tests}
+
+
+%\backmatter
+\include{PSTL_conclusion}
+
+%\part{Annexes}
+\appendix
+\include{PSTL_annexes_etudeDepart}
+\include{PSTL_annexes_implem}
+%\bibliography{PSTL_bibliographie}
+
+
+\end{document}

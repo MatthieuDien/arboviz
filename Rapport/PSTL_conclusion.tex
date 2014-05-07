@@ -1,0 +1,10 @@
+\chapter{Conclusion}
+
+\section{Bilan}
+\paragraph{}L'application \verb|treeDisplay| permet de calculer les coordonnées des n\oe uds d'un arbre en temps linéaire par rapport à ce nombre de n\oe uds.
+
+\section{Pour la suite}
+
+\paragraph{}La structure choisie permet aussi de représenter des graphes. On peut donc envisager par la suite d'implémenter un algorithme de calcul de coordonnées pour les graphes. Les modules de parsing et de génération sont pleinement réutilisables.
+
+\paragraph{}La complexité en mémoire est actuellement égale à celle en temps. Cependant, on utilisant une table de hachage pour les sous-arbres, on peut devenir sous-linéaire. L'idée consiste à calculer des coordonnées relatives et lorsqu'un arbre comporte deux (ou plus) sous-arbres identiques. Le sous-arbre en question n'est sauvegarder en mémoire qu'une seule fois et la deuxième fois on ne sauvegarde qu'une référence. On calcule ensuite les coordonnées absolues lors de la génération.
