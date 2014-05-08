@@ -32,6 +32,7 @@ def toNetworkX(treeToDraw, addLabels=False, outputfile="treeNetworkX", outputfor
 		(G, pos) = toNetworkXrec(treeToDraw)
 		print("Printing...")
 		plt.figure(1)
+		plt.clf()
 		plt.gca().invert_yaxis()
 		# Draw the labels a little upper, so they don't overlap the nodes
 		if (addLabels):
@@ -44,6 +45,7 @@ def toNetworkX(treeToDraw, addLabels=False, outputfile="treeNetworkX", outputfor
 			nx.draw(G, pos, with_labels=False, node_size=node_size)
 		print("Saving figure...")
 		plt.savefig(outputfile+'.'+outputformat)
+		G.clear()
 	else :
 		print("Tree must not be empty.")
 

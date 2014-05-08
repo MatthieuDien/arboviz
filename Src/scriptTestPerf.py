@@ -78,8 +78,8 @@ execTimetoNXsvg.append(0)
 nbIte=10
 i=1
 
-#while i<=33300 :
-while i<=50 :
+while i<=33300 :
+#while i<=50 :
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -102,9 +102,9 @@ while i<=50 :
 		while slot<len(nbNode) and nbNode[slot]<n:
 			slot+=1
 			#if nbNode[slot]!=n:
-			nbNode.insert(slot, n)
+		nbNode.insert(slot, n)
 		slotNX=0
-		if n<=50:
+		if n<=30:
 			#nbNodeNX.append(n)
 			while slotNX<len(nbNodeNX) and nbNodeNX[slotNX]<n:
 				slotNX+=1
@@ -143,7 +143,7 @@ while i<=50 :
 		test = timeit.Timer("toasy()", "from __main__ import toasy")
 		execTimetoAsy.insert(slot, test.timeit(nbIte)/nbIte)
 		
-		if n<=50:
+		if n<=30:
 			# Création du Timer pour NX
 			test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
 			execTimetoNXpng.insert(slotNX, test.timeit(nbIte)/nbIte)
@@ -155,10 +155,6 @@ while i<=50 :
 			execTimetoNXsvg.insert(slotNX, test.timeit(nbIte)/nbIte)
 		
 	i+=1
-
-print(nbNode)
-print("$$$$$$$$$$$$$$$$$$$$")
-print(execTimeCoord)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
