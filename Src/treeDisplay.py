@@ -75,6 +75,7 @@ else:
 print("Computing...")
 
 tree.computeCoord()
+#tree.setup()
 
 #******************
 #*** Generating ***
@@ -83,7 +84,7 @@ tree.computeCoord()
 print("Generating...")
 
 if (output == "tikz"):
-	toTikZ (tree, withLabels, fileName + ".tex")
+	toTikz (tree, withLabels, fileName + ".tex")
 elif (output == "asy"):
 	toAsymptote (tree, withLabels, fileName + ".tex")
 elif (output == "png" or output == "pdf" or output == "eps"):

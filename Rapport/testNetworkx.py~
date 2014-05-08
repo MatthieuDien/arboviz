@@ -8,7 +8,7 @@ if (sys.argv[3] == "true"):
 	labels = True
 else:
 	labels = False
-filename="testNetworkx%d" % (nbIte,)
+filename="testNkx%d" % (nbIte,)
 if (labels):
 	filename += "A.png"
 else:
