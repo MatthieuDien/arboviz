@@ -108,20 +108,17 @@ class Tree(object):
 		f.close()
 		
 	def toDotFileRec (self, f):
-<<<<<<< HEAD
 		f.write("%d [label=\" %s \"];\n" % (id(self), self.label,))
 		
 		for c in self.children:
 			c.toDotFileRec(f)
 			#f.write(id(self), "->", id(c), ";")
 			f.write ("%d -> %d ;\n" % (id(self), id(c),))
-=======
 		f.write("%d[label=\""%id(self)+self.label+"\";]")
 		
 		for c in self.children:
 			c.toDotFileRec(f)
 			f.write("%d->%d;"%(id(self), id(c)))
->>>>>>> 02b08ee1da6b61a66f012307e91f8470bbc499de
 		
 	def toStrFile (self, fileName="treeStr"):
 		f=open (fileName+".txt", "w")

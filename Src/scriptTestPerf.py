@@ -51,10 +51,9 @@ execTimetoNX=[]
 execTimetoNX.append(0)
 
 nbIte=10
-nbRep=3
 i=1
 
-while i<=1 :
+while i<=3 :
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	T=xmlParser("XML_tests/%d.xml" % i)
@@ -78,9 +77,9 @@ while i<=1 :
 	
 	print ('ComputeCoord pour l\'arbre %d...' % i)
 	
-	## Création du Timer pour computeCoord
-	#test = timeit.Timer("coord()", "from __main__ import coord")
-	T.computeCoord()
+	# Création du Timer pour computeCoord
+	test = timeit.Timer("coord()", "from __main__ import coord")
+	execTimeCoord.append(test.timeit(nbIte)/nbIte)
 	
 	print ('Génération de la sortie de l\'arbre %d...' % i)
 	
@@ -101,4 +100,29 @@ while i<=1 :
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
 
+plt.figure(2)
+plt.plot(nbNode, execTimeXML, 'b')
+#plt.plot(nbNode, execTimeDOT, 'r')
+plt.plot(nbNode, execTimeSTR, 'g')
+plt.xlabel('Nombre de noeuds')
+plt.ylabel('Temps d\'exécution (ms)')
+plt.title('Temps d\'exécution des parser \n en fonction du nombre de noeuds de l\'arbre à parser')
+plt.legend(("Parser XML", "Parser STR"), 'best')#, "Parser DOT"
+plt.show()
 
+plt.figure(3)
+plt.plot(nbNode, execTimetoAsy, 'b')
+plt.plot(nbNode, execTimetoNX, 'r')
+plt.plot(nbNode, execTimetoTikZ, 'g')
+plt.xlabel('Nombre de noeuds')
+plt.ylabel('Temps d\'exécution (ms)')
+plt.title('Temps d\'exécution des générateurs \n en fonction du nombre de noeuds de l\'arbre à afficher')
+plt.legend(("Asymptote", "NetworkX", "TikZ"), 'best')
+plt.show()
+
+plt.figure(4)
+plt.plot(nbNode, execTimeCoord, 'b')
+plt.xlabel('Nombre de noeuds')
+plt.ylabel('Temps d\'exécution (ms)')
+plt.title('Temps de calcul des coordonnées des noeuds \n en fonction du nombre de noeuds de l\'arbre reçu en entrée')
+plt.show()
