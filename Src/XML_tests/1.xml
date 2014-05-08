@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+	<tree>
+		<node type="" id="root">
+			<leaf type="" id="a"/>
+			<node type="" id="b">
+				<leaf type="" id="c"/>
+				<leaf type="" id="d"/>
+			</node>
+		</node>
+	</tree>
