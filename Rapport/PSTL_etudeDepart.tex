@@ -4,18 +4,18 @@
 
 	\section{TikZ}
 
-\paragraph{}TikZ est un package \LaTeX permettant la création de graphiques.
+\paragraph{}TikZ est un package \LaTeX{} permettant la création de graphiques.
 
 \paragraph{}On va utiliser le code Python suivant pour générer du code TikZ décrivant un arbre linéaire d'une taille passée en paramètre.
 \lstinputlisting[language=Python]{testTikz.py}
 
 		\subsection{$500$ n\oe uds}
 
-\paragraph{}On utilise le code précédent pour générer un arbre linéaire de taille $500$. On insère le code obtenu dans un fichier \LaTeX pour voir le résultat. Le fichier \LaTeX compile et le résultat est aux figures \ref{arbre500TikZA} et \ref{arbre500TikZB}.
+\paragraph{}On utilise le code précédent pour générer un arbre linéaire de taille $500$. On insère le code obtenu dans un fichier \LaTeX{} pour voir le résultat. Le fichier \LaTeX{} compile et le résultat est aux figures \ref{arbre500TikZA} et \ref{arbre500TikZB}.
 
 		\subsection{$10000$ n\oe uds}
 		
-\paragraph{}On utilise maintenant le même code mais pour avoir un arbre de $10000$ n\oe uds. Le fichier \LaTeX ne compile plus. On obtient l'erreur \verb|dimension too large| à la ligne:
+\paragraph{}On utilise maintenant le même code mais pour avoir un arbre de $10000$ n\oe uds. Le fichier \LaTeX{} ne compile plus. On obtient l'erreur \verb|dimension too large| à la ligne:
 \begin{lstlisting}
 \node (a576) at (0,576) {$576$};
 \end{lstlisting}
@@ -24,14 +24,14 @@
 
 	\section{Asymptote}
 
-\paragraph{}Asymptote est un langage de description de dessins vectoriels. Un package permet de le compiler dans un fichier \LaTeX mais le code asymptote peut aussi être autonome.
+\paragraph{}Asymptote est un langage de description de dessins vectoriels. Un package permet de le compiler dans un fichier \LaTeX{} mais le code asymptote peut aussi être autonome.
 
 \paragraph{}On va utiliser le code Python suivant pour générer du code Asymptote décrivant un arbre linéaire d'une taille passée en paramètre.
 \lstinputlisting[language=Python]{testAsymptote.py}
 
 		\subsection{$500$ n\oe uds}
 		
-\paragraph{}On commence doucement en générant un arbre de $500$ n\oe uds. On insère le code obtenu dans un fichier \LaTeX comme précédemment. Le fichier compile et le résultat obtenu est celui des figures \ref{arbre500AsyA} et \ref{arbre500AsyB}.
+\paragraph{}On commence doucement en générant un arbre de $500$ n\oe uds. On insère le code obtenu dans un fichier \LaTeX{} comme précédemment. Le fichier compile et le résultat obtenu est celui des figures \ref{arbre500AsyA} et \ref{arbre500AsyB}.
 
 		\subsection{$10000$ n\oe uds}
 \paragraph{}On recommence en mettant la barre à $10000$ n\oe uds. Le fichier compile sans problème et le résultat est celui des figures \ref{arbre10000AsyA} et \ref{arbre10000AsyB}.
@@ -53,7 +53,7 @@
 	
 	\section{Conclusion}
 	
-\paragraph{}TikZ permet une représentation claire d'un arbre avec ses labels. En effet, même avec $500$ n\oe uds, les labels sont lisibles si on zoome suffisamment. Cependant, une limite a rapidement était atteinte. TikZ serait préférable pour la représentation de petits arbres avec (ou sans!) labels.
-\paragraph{}Asymptote permet de représenter de grands arbres. Son point faible est la représentation des labels. Cependant, les labels sont compilés avec \LaTeX ce qui peut permettre d'avoir des labels un peu plus évolués qu'une chaine de caractères, une fois la taille des labels maitrisée.
-\paragraph{}NetworkX et Matplotlib permettent plusieurs formats de sortie différents. Cela pourrait être utile aux non-utilisateurs de \LaTeX . Cependant, l'affichage des labels n'est pas non plus très optimal.
+\paragraph{}TikZ permet une représentation claire d'un arbre avec ses labels. En effet, même avec $500$ n\oe uds, les labels sont lisibles si on zoome suffisamment. Cependant, une limite a rapidement été atteinte. TikZ serait préférable pour la représentation de petits arbres avec (ou sans!) labels.
+\paragraph{}Asymptote permet de représenter de grands arbres. Son point faible est la représentation des labels. Cependant, les labels sont compilés avec \LaTeX{} ce qui peut permettre d'avoir des labels un peu plus évolués qu'une chaîne de caractères, une fois la taille des labels maîtrisée.
+\paragraph{}NetworkX et Matplotlib permettent plusieurs formats de sortie différents. Cela pourrait être utile aux non-utilisateurs de \LaTeX{}. Cependant, l'affichage des labels n'est pas non plus très optimal.
 \paragraph{}Notons tout de même que cette étude préliminaire ne prend pas en compte le temps de calcul des coordonnées, ce qui est le c\oe ur de notre projet et qui est expliqué dans le chapitre suivant.

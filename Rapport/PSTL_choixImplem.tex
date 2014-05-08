@@ -17,7 +17,7 @@
 
 	\subsection{Structure d'arbre}
 	
-\paragraph{}Nous avons une structure d'arbre n-aire classique avec une liste pour les enfants ainsi que des attributs pour le calcul de coordonnées et la génération finale. En particulier, les attributs \verb|width| et \verb|height| représente respectivement la plus grande absisse et la plus grande ordonnée rencontrée dans le sous-arbre. Au niveau de la racine, cela représente la largeur et la hauteur du graphe.
+\paragraph{}Nous avons une structure d'arbre n-aire classique avec une liste pour les enfants ainsi que des attributs pour le calcul de coordonnées et la génération finale. En particulier, les attributs \verb|width| et \verb|height| représente respectivement la plus grande abscisse et la plus grande ordonnée rencontrée dans le sous-arbre. Au niveau de la racine, cela représente la largeur et la hauteur du graphe.
 	
 \lstinputlisting[language=Python, firstline=23, lastline=37]{../Src/tree.py}
 
@@ -78,7 +78,7 @@ ID : [0-9]*
 
 \paragraph{}L'ordonnée d'un n\oe ud est triviale: c'est sa profondeur.
 
-\paragraph{}L'abcisse d'un n\oe ud est un peu plus complexe et demande donc plus de réflexion. 
+\paragraph{}L’abscisse d'un n\oe ud est un peu plus complexe et demande donc plus de réflexion. 
 
 \subparagraph{}On veut qu'un père soit centré sur ses fils. On commence donc par placer ses fils s'il en a puis on fait la moyenne de l'abscisse de ses $2$ fils extrémaux pour le centrer. 
 
@@ -91,7 +91,7 @@ ID : [0-9]*
 	\hline
 	 & \multicolumn{2}{|c|}{root} & \multicolumn{2}{|c|}{n11} & \multicolumn{2}{|c|}{n12} & \multicolumn{2}{|c|}{n13} & \multicolumn{2}{|c|}{n21} & \multicolumn{2}{|c|}{n22} & \multicolumn{2}{|c|}{n23}\\ \hline
 	& x & y & x & y & x & y & x & y & x & y & x & y & x & y \\ \hline
-	Inititalement & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Initialement & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
 	Appel sur root & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
 	Appel sur n11 & -1 & 0 & 0 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
 	Retour sur root & -1 & 0 & 0 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
@@ -114,7 +114,7 @@ La position ensuite calculée pour \verb|n13| est $1$. Or il y a déjà \verb|n1
 \caption{Résultat de l'exemple à la fin de l'étape 1.}
 \end{figure}
 
-\subparagraph{}On compare la position calculée avec la première position disponible et on prend le max. Si la position calculée n'est pas celle retenue, le père n'est plus centré au milieu de ses fils. On mémorise donc le décalage effectué pour ce père pour ensuite l'appliquer à ses sous-arbres dans un second temps pour des raisons de complexité. En effet, si on faisait chaque décalage lorsqu'il se présentait, le décalage serait quadratique car il y a potentiellement un décalage pour chaque ancêtre d'un n\oe uds.
+\subparagraph{}On compare la position calculée avec la première position disponible et on prend le maximum. Si la position calculée n'est pas celle retenue, le père n'est plus centré au milieu de ses fils. On mémorise donc le décalage effectué pour ce père pour ensuite l'appliquer à ses sous-arbres dans un second temps pour des raisons de complexité. En effet, si on faisait chaque décalage lorsqu'il se présentait, le décalage serait quadratique car il y a potentiellement un décalage pour chaque ancêtre d'un n\oe uds.
 	
 \lstinputlisting[language=Python, firstline=43, lastline=72]{../Src/tree.py}
 
@@ -122,7 +122,7 @@ La position ensuite calculée pour \verb|n13| est $1$. Or il y a déjà \verb|n1
 
 \lstinputlisting[language=Python, firstline=77, lastline=87]{../Src/tree.py}
 
-\subparagraph{}Le résultat finale est le suivant:
+\subparagraph{}Le résultat final est le suivant:
 
 \begin{figure}[h] \centering \resizebox {!}{5cm} {
 \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
