@@ -17,7 +17,7 @@ G = nx.path_graph(nbIte)
 pos={x: (5, x*longueur_arete) for x in G.nodes()}
 if (labels):
 	labels={x: "label" for x in G.nodes()}
-	nx.draw_networkx_labels(G, pos, node_size=5, with_labels=True, labels=labels)
-
-nx.draw(G, pos, node_size=5, with_labels=False)
+	nx.draw(G, pos, labels=labels, node_size=5, with_labels=True)
+else:
+	nx.draw(G, pos, node_size=5, with_labels=False)
 plt.savefig(filename)
