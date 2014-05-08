@@ -1,5 +1,5 @@
 """
-Copyright (C) 2014 Érika Baëna et Diana Malabard
+Copyright (C) 2014 Erika Baena et Diana Malabard
 
 This file is part of TreeDisplay.
 
@@ -8,7 +8,7 @@ This file is part of TreeDisplay.
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    TreeDisplay is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.

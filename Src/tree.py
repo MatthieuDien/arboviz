@@ -1,5 +1,5 @@
 """
-Copyright (C) 2014 Érika Baëna et Diana Malabard
+Copyright (C) 2014 Erika Baena et Diana Malabard
 
 This file is part of TreeDisplay.
 
@@ -8,7 +8,7 @@ This file is part of TreeDisplay.
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    TreeDisplay is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -34,6 +34,57 @@ class Tree(object):
 			self.children = list()
 		else:
 			self.children = children
+		
+	def computeCoord (self):
+		self.setup()
+		self.addOffsets()
+		return self
+		
+	def setup (self, depth=0, nexts=None, offset=None):
+		if nexts is None:
+			nexts = defaultdict(lambda:0)
+		if offset is None:
+			offset = defaultdict(lambda:0)
+		
+		# L'ordonnée est triviale, c'est la profondeur.
+		self.y = depth
+		
+		# On calcule d'abord les coordonnées des enfants.
+		for c in self.children:
+			c.setup(depth+1, nexts, offset)
+		
+		# On centre le noeud au milieu de ses enfants.
+		nbChildren = len(self.children)
+		if (nbChildren == 0):
+			place = nexts[depth]
+			self.x = place
+		else:
+			place = (self.children[0].x + self.children[nbChildren-1].x) / 2
+			
+		# On calcule l'éventuel décalage engendré.
+		offset[depth] = max(offset[depth], nexts[depth]-place)
+		
+		# On applique le décalage de la profondeur.
+		if (nbChildren != 0):
+			self.x = place + offset[depth]
+			
+		# On met à jour la prochaine place disponible à cette profondeur.
+		nexts[depth] = self.x +1
+		
+		# On mémorise le décalage à appliquer au sous-arbre lors de la deuxième passe.
+		self.offset = offset[depth]
+		
+	def addOffsets (self, offsum=0):
+		self.x = self.x + offsum
+		offsum = offsum + self.offset
+		
+		self.height = self.y
+		self.width = self.x
+		
+		for c in self.children:
+			c.addOffsets(offsum)
+			self.height = max (self.height, c.height)
+			self.width = max (self.width, c.width)
 		
 	def display(self):
 		print ("(", self.label, ":", "x= ",self.x, "y= ", self.y, "off= ", self.offset, end=" ")
@@ -71,47 +122,3 @@ class Tree(object):
 	#def toXmlFile (self, fileName="treeXml"):
 	
 	#def toArbFile (self, fileName="treeArb"):
-		
-	def computeCoord (self):
-		self.setup()
-		self.addOffsets()
-		return self
-		
-	def setup (self, depth=0, nexts=None, offset=None):
-		if nexts is None:
-			nexts = defaultdict(lambda:0)
-		if offset is None:
-			offset = defaultdict(lambda:0)
-			
-		for c in self.children:
-			c.setup(depth+1, nexts, offset)
-		
-		self.y = depth
-		
-		nbChildren = len(self.children)
-		
-		if (nbChildren == 0):
-			place = nexts[depth]
-			self.x = place
-		else:
-			place = (self.children[0].x + self.children[nbChildren-1].x) / 2
-			
-		offset[depth] = max(offset[depth], nexts[depth]-place)
-		
-		if (nbChildren != 0):
-			self.x = place + offset[depth]
-			
-		nexts[depth] = self.x +1
-		self.offset = offset[depth]
-		
-	def addOffsets (self, offsum=0):
-		self.x = self.x + offsum
-		offsum = offsum + self.offset
-		
-		self.height = self.y
-		self.width = self.x
-		
-		for c in self.children:
-			c.addOffsets(offsum)
-			self.height = max (self.height, c.height)
-			self.width = max (self.width, c.width)
