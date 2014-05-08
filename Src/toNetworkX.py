@@ -64,13 +64,6 @@ def toNetworkXrec(treeToDraw, pos=dict(), G=nx.Graph()) :
 			#the current tree is not a leaf ->
 			#add one edge from the root to each son, make a graph
 			#from each son, and combine all the results
-			#G.add_edge(treeToDraw.label, t.label)
 			G.add_edge(hex(id(treeToDraw)), hex(id(t)))
 			(G, pos) = toNetworkXrec(t, pos, G)
-			#for (node, data) in H.nodes_iter(data=True):
-				#G.add_node(node, **data)
-			#G.add_edges_from(H.edges())
-			#G.add_node(H)
-			#pos.update(pos2)
-			#pos[H]=pos2[hex(id(t))]
 	return (G, pos)
