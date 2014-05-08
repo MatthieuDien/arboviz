@@ -35,6 +35,12 @@ class Tree(object):
 		else:
 			self.children = children
 		
+	def nbNode (self):
+		n=1;
+		for child in self.children :
+			n+=child.nbNode()
+		return n
+		
 	def computeCoord (self):
 		self.setup()
 		self.addOffsets()
@@ -93,7 +99,7 @@ class Tree(object):
 		print (")")
 		
 	def toDotFile (self, fileName="treeDot"):
-		f=open (filName+".dot", "w")
+		f=open (fileName+".dot", "w")
 		
 		f.write("diagraph {")
 		self.toDotFileRec(f)
@@ -102,19 +108,19 @@ class Tree(object):
 		f.close()
 		
 	def toDotFileRec (self, f):
-		f.write(id(self), "[label=\"", self.label, "\";]")
+		f.write("%d[label=\""%id(self)+self.label+"\";]")
 		
 		for c in self.children:
 			c.toDotFileRec(f)
-			f.write(id(self), "->", id(c), ";")
+			f.write("%d->%d;"%(id(self), id(c)))
 		
 	def toStrFile (self, fileName="treeStr"):
-		f=open (filName+".str", "w")
+		f=open (fileName+".txt", "w")
 		self.toStrFileRec(f)
 		f.close()
 		
 	def toStrFileRec (self, f):
-		f.write("(", self.label)
+		f.write("("+self.label)
 		for c in self.children:
 			c.toStrFileRec(f)
 		f.write(")")

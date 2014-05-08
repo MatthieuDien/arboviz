@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 node_size=5
 
 #Main function
-def toNetworkX(treeToDraw, addLabels, outputfile="treeNetworkX.png") :
+def toNetworkX(treeToDraw, addLabels=False, outputfile="treeNetworkX.png") :
 	if (not(treeToDraw==None)) :
 		print("Generating NetworkX...")
 		(G, pos) = toNetworkXrec(treeToDraw)
