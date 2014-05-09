@@ -75,7 +75,7 @@ execTimetoNXeps.append(0)
 execTimetoNXsvg=[]
 execTimetoNXsvg.append(0)
 
-nbIte=10
+nbIte=3
 i=1
 n=0
 
@@ -157,7 +157,7 @@ while i<=33300 and n<=10000000:
 	if i>=1900:
 		i+=500
 	else:
-		i=min(1900, i+5)
+		i=min(1900, i+50)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
