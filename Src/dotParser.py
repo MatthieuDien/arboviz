@@ -75,7 +75,7 @@ def dotParser (src):
 	
 	
 	i+= 1 #skip the {
-	print (s[i])
+	#print (s[i])
 	
 	dico = {}
 	roots = set()

@@ -39,7 +39,7 @@ use = argparse.ArgumentParser()
 use.add_argument("ext", choices=["str", "arb", "xml", "dot"], help="The type of the given file.")
 use.add_argument("src", help="The file which contains a tree description.")
 use.add_argument("-L", "--labels", action="store_true", help="Print labels on the output tree, depreciate with NetworkX and Asymptote")
-use.add_argument("-O", "--output", default="png", choices=["tikz", "asy", "png", "pdf", "eps"], help="The type of the output file")
+use.add_argument("-O", "--output", default="png", choices=["tikz", "asy", "png", "pdf", "eps", "svg"], help="The type of the output file")
 use.add_argument("-N", "--name", default="result", help="The name of the output file")
 
 args = use.parse_args()
@@ -87,5 +87,5 @@ if (output == "tikz"):
 	toTikz (tree, withLabels, fileName + ".tex")
 elif (output == "asy"):
 	toAsymptote (tree, withLabels, fileName + ".tex")
-elif (output == "png" or output == "pdf" or output == "eps"):
-	toNetworkX (tree, withLabels, fileName + "." + output)
+elif (output == "png" or output == "pdf" or output == "eps" or output == "svg"):
+	toNetworkX (tree, withLabels, fileName, output)
