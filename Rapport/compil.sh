@@ -25,4 +25,4 @@ pdflatex PSTL_rapport.tex
 pdflatex PSTL_rapport.tex
 
 # nettoyage
-rm *.aux *.log *.out *.toc PSTL_rapport-* test*.tex *.blg *.bbl
+rm *.aux *.log *.out *.toc PSTL_rapport-* *.pre test*.tex *.blg *.bbl *~
