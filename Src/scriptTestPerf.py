@@ -80,8 +80,7 @@ nbIteNX=5
 i=1
 n=0
 
-while i<=33300 and n<=10000000:
-#while i<=50 :
+while i<=33300 and n<=100000:
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -98,19 +97,15 @@ while i<=33300 and n<=10000000:
 	
 	if ok:
 		n=T.nbNode()
-		#nbNode.append(n)
 		# Chercher le slot où placer n
 		slot=0
 		while slot<len(nbNode) and nbNode[slot]<n:
 			slot+=1
-			#if nbNode[slot]!=n:
 		nbNode.insert(slot, n)
 		slotNX=0
-		if n<=30:
-			#nbNodeNX.append(n)
+		if n<=5000:
 			while slotNX<len(nbNodeNX) and nbNodeNX[slotNX]<n:
 				slotNX+=1
-			#if slotNX==len(nbNodeNX) or [slotNX]!=n:
 			nbNodeNX.insert(slotNX, n)
 		
 		print ('Parsing de l\'arbre %d...' % i)
@@ -130,6 +125,7 @@ while i<=33300 and n<=10000000:
 		execTimeDOT.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		print ('ComputeCoord pour l\'arbre %d...' % i)
+		T.computeCoord()
 		
 		# Création du Timer pour computeCoord
 		test = timeit.Timer("coord()", "from __main__ import coord")
@@ -145,7 +141,7 @@ while i<=33300 and n<=10000000:
 		test = timeit.Timer("toasy()", "from __main__ import toasy")
 		execTimetoAsy.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
-		if n<=30:
+		if n<=5000:
 			# Création du Timer pour NX
 			test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
 			execTimetoNXpng.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
@@ -192,9 +188,8 @@ plt.plot(nbNodeNX, execTimetoNXeps, 'b')
 plt.plot(nbNodeNX, execTimetoNXsvg, 'm')
 plt.xlabel('Nombre de noeuds')
 plt.ylabel('Temps d\'exécution (ms)')
-plt.title('Temps d\'exécution du générateur NetworkX \n '+
-		  'en fonction du nombre de noeuds de l\'arbre à afficher \n'+
-		  ' et du type de sortie demandé')
+plt.title('Temps d\'exécution du générateur NetworkX + Pyplot en fonction du \n'+
+		  'nombre de noeuds de l\'arbre à afficher et du type de sortie demandé')
 plt.legend(("NetworkX format PNG", "NetworkX format PDF", "NetworkX format EPS",
 			"NetworkX format SVG"), 'best')
 plt.savefig("execTimeNX.png")
