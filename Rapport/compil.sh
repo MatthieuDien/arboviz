@@ -21,6 +21,7 @@ asy PSTL_rapport-1.asy
 asy PSTL_rapport-2.asy
 asy PSTL_rapport-3.asy
 asy PSTL_rapport-4.asy
+biblatex PSTL_rapport
 pdflatex PSTL_rapport.tex
 pdflatex PSTL_rapport.tex
 
