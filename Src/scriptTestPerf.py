@@ -77,8 +77,9 @@ execTimetoNXsvg.append(0)
 
 nbIte=10
 i=1
+n=0
 
-while i<=33300 :
+while i<=33300 and n<=10000000:
 #while i<=50 :
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
@@ -154,9 +155,9 @@ while i<=33300 :
 			test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
 			execTimetoNXsvg.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
 	if i>=1900:
-		i+=100
+		i+=500
 	else:
-		i+=1
+		i=min(1900, i+5)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
