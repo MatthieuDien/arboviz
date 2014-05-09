@@ -151,10 +151,10 @@ while i<=33300 and n<=100000:
 			execTimetoNXeps.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
 			execTimetoNXsvg.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
-	if i>=1900:
+	if i>=400:
 		i+=500
 	else:
-		i=min(1900, i+50)
+		i=min(400, i+100)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
