@@ -1,0 +1,7 @@
+Src/__pycache__/*
+arbogen-master/*
+Src/XML_tests/treeXml1To1500/*
+Src/XML_tests/treeXml1501To1900/*
+Src/XML_tests/treeXml2000To30000/*
+Src/XML_tests/treeXml30100To33300/*
+
