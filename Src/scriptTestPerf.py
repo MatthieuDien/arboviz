@@ -75,7 +75,8 @@ execTimetoNXeps.append(0)
 execTimetoNXsvg=[]
 execTimetoNXsvg.append(0)
 
-nbIte=3
+nbIte=10
+nbIteNX=5
 i=1
 n=0
 
@@ -147,13 +148,13 @@ while i<=33300 and n<=10000000:
 		if n<=30:
 			# Création du Timer pour NX
 			test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
-			execTimetoNXpng.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
+			execTimetoNXpng.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			test = timeit.Timer("tonxpdf()", "from __main__ import tonxpdf")
-			execTimetoNXpdf.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
+			execTimetoNXpdf.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			test = timeit.Timer("tonxeps()", "from __main__ import tonxeps")
-			execTimetoNXeps.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
+			execTimetoNXeps.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
-			execTimetoNXsvg.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
+			execTimetoNXsvg.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 	if i>=1900:
 		i+=500
 	else:
@@ -163,6 +164,7 @@ while i<=33300 and n<=10000000:
 # une pour les générateurs
 
 plt.figure(2)
+plt.loglog()
 plt.plot(nbNode, execTimeXML, 'b')
 plt.plot(nbNode, execTimeDOT, 'r')
 plt.plot(nbNode, execTimeSTR, 'g')
@@ -173,6 +175,7 @@ plt.legend(("Parser XML", "Parser DOT", "Parser STR"), 'best')
 plt.savefig("execTimeParsers.png")
 
 plt.figure(3)
+plt.loglog()
 plt.plot(nbNode, execTimetoAsy, 'b')
 plt.plot(nbNode, execTimetoTikZ, 'g')
 plt.xlabel('Nombre de noeuds')
@@ -197,6 +200,7 @@ plt.legend(("NetworkX format PNG", "NetworkX format PDF", "NetworkX format EPS",
 plt.savefig("execTimeNX.png")
 
 plt.figure(5)
+plt.loglog()
 plt.plot(nbNode, execTimeCoord, 'b')
 plt.xlabel('Nombre de noeuds')
 plt.ylabel('Temps d\'exécution (ms)')
