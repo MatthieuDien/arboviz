@@ -115,44 +115,44 @@ while i<=33300 :
 		
 		# Création du Timer pour le parsing XML
 		test = timeit.Timer("xml(%d)"%i, "from __main__ import xml")
-		execTimeXML.insert(slot, test.timeit(nbIte)/nbIte)
+		execTimeXML.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		# Création du Timer pour le parsing STR
 		T.toStrFile("XML_tests/test")
 		test = timeit.Timer("strp()", "from __main__ import strp")
-		execTimeSTR.insert(slot, test.timeit(nbIte)/nbIte)
+		execTimeSTR.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		# Création du Timer pour le parsing DOT
 		T.toDotFile("XML_tests/test")
 		test = timeit.Timer("dot()", "from __main__ import dot")
-		execTimeDOT.insert(slot, test.timeit(nbIte)/nbIte)
+		execTimeDOT.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		print ('ComputeCoord pour l\'arbre %d...' % i)
 		
 		# Création du Timer pour computeCoord
 		test = timeit.Timer("coord()", "from __main__ import coord")
-		execTimeCoord.insert(slot, test.timeit(nbIte)/nbIte)
+		execTimeCoord.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		print ('Génération de la sortie de l\'arbre %d...' % i)
 		
 		# Création du Timer pour TIKZ
 		test = timeit.Timer("totikz()", "from __main__ import totikz")
-		execTimetoTikZ.insert(slot, test.timeit(nbIte)/nbIte)
+		execTimetoTikZ.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		# Création du Timer pour ASY
 		test = timeit.Timer("toasy()", "from __main__ import toasy")
-		execTimetoAsy.insert(slot, test.timeit(nbIte)/nbIte)
+		execTimetoAsy.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		if n<=30:
 			# Création du Timer pour NX
 			test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
-			execTimetoNXpng.insert(slotNX, test.timeit(nbIte)/nbIte)
+			execTimetoNXpng.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
 			test = timeit.Timer("tonxpdf()", "from __main__ import tonxpdf")
-			execTimetoNXpdf.insert(slotNX, test.timeit(nbIte)/nbIte)
+			execTimetoNXpdf.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
 			test = timeit.Timer("tonxeps()", "from __main__ import tonxeps")
-			execTimetoNXeps.insert(slotNX, test.timeit(nbIte)/nbIte)
+			execTimetoNXeps.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
 			test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
-			execTimetoNXsvg.insert(slotNX, test.timeit(nbIte)/nbIte)
+			execTimetoNXsvg.insert(slotNX, test.timeit(nbIte)*1000/nbIte)
 	if i>=1900:
 		i+=100
 	else:
