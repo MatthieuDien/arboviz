@@ -8,6 +8,7 @@ from toNetworkX import toNetworkX
 from toTikZ import toTikz
 import matplotlib.pyplot as plt
 import sys
+import os
 
 	
 # Fonctions définissant l'exécution pour chaque type de fichier (pour les Timer)
@@ -47,6 +48,10 @@ def tonxsvg() :
 
 def totikz() :
 	toTikz(T)
+	
+def gv() :
+	cmd=os.popen("dot -Tjpg -O XML_tests/test.dot")
+	cmd.read()
 
 nbNode=[]
 nbNode.append(0)
@@ -75,12 +80,18 @@ execTimetoNXeps.append(0)
 execTimetoNXsvg=[]
 execTimetoNXsvg.append(0)
 
-nbIte=10
+execTimeXMLAsy=[]
+execTimeXMLAsy.append(0)
+execTimeGV=[]
+execTimeGV.append(0)
+
+#nbIte=10
+nbIte=5
 nbIteNX=5
 i=1
 n=0
 
-while i<=33300 and n<=100000:
+while i<=33300 and n<=500:
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -107,98 +118,122 @@ while i<=33300 and n<=100000:
 			while slotNX<len(nbNodeNX) and nbNodeNX[slotNX]<n:
 				slotNX+=1
 			nbNodeNX.insert(slotNX, n)
+			
+		a=0
+		b=0
+		c=0
 		
 		print ('Parsing de l\'arbre %d...' % i)
 		
 		# Création du Timer pour le parsing XML
 		test = timeit.Timer("xml(%d)"%i, "from __main__ import xml")
-		execTimeXML.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		a=test.timeit(nbIte)*1000/nbIte
+		execTimeXML.insert(slot, a)
 		
-		# Création du Timer pour le parsing STR
-		T.toStrFile("XML_tests/test")
-		test = timeit.Timer("strp()", "from __main__ import strp")
-		execTimeSTR.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		## Création du Timer pour le parsing STR
+		#T.toStrFile("XML_tests/test")
+		#test = timeit.Timer("strp()", "from __main__ import strp")
+		#execTimeSTR.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
-		# Création du Timer pour le parsing DOT
+		## Création du Timer pour le parsing DOT
 		T.toDotFile("XML_tests/test")
-		test = timeit.Timer("dot()", "from __main__ import dot")
-		execTimeDOT.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		#test = timeit.Timer("dot()", "from __main__ import dot")
+		#execTimeDOT.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		print ('ComputeCoord pour l\'arbre %d...' % i)
-		T.computeCoord()
 		
 		# Création du Timer pour computeCoord
 		test = timeit.Timer("coord()", "from __main__ import coord")
-		execTimeCoord.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		b=test.timeit(nbIte)*1000/nbIte
+		execTimeCoord.insert(slot, b)
 		
 		print ('Génération de la sortie de l\'arbre %d...' % i)
 		
-		# Création du Timer pour TIKZ
-		test = timeit.Timer("totikz()", "from __main__ import totikz")
-		execTimetoTikZ.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		## Création du Timer pour TIKZ
+		#test = timeit.Timer("totikz()", "from __main__ import totikz")
+		#execTimetoTikZ.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		# Création du Timer pour ASY
 		test = timeit.Timer("toasy()", "from __main__ import toasy")
-		execTimetoAsy.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		c=test.timeit(nbIte)*1000/nbIte
+		execTimetoAsy.insert(slot, c)
 		
-		if n<=5000:
-			# Création du Timer pour NX
-			test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
-			execTimetoNXpng.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
-			test = timeit.Timer("tonxpdf()", "from __main__ import tonxpdf")
-			execTimetoNXpdf.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
-			test = timeit.Timer("tonxeps()", "from __main__ import tonxeps")
-			execTimetoNXeps.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
-			test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
-			execTimetoNXsvg.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
+		execTimeXMLAsy.insert(slot, a+b+c)
+		
+		#if n<=5000:
+			## Création du Timer pour NX
+			#test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
+			#execTimetoNXpng.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
+			#test = timeit.Timer("tonxpdf()", "from __main__ import tonxpdf")
+			#execTimetoNXpdf.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
+			#test = timeit.Timer("tonxeps()", "from __main__ import tonxeps")
+			#execTimetoNXeps.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
+			#test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
+			#execTimetoNXsvg.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
+			
+		print ('Exécution de GraphViz pour l\'arbre %d...' % i)
+		
+		test = timeit.Timer("gv()", "from __main__ import gv")
+		execTimeGV.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		
 	if i>=400:
 		i+=500
 	else:
-		i=min(400, i+100)
+		i=min(400, i+5)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
 
-plt.figure(2)
-plt.loglog()
-plt.plot(nbNode, execTimeXML, 'b')
-plt.plot(nbNode, execTimeDOT, 'r')
-plt.plot(nbNode, execTimeSTR, 'g')
-plt.xlabel('Nombre de noeuds')
-plt.ylabel('Temps d\'exécution (ms)')
-plt.title('Temps d\'exécution des parser \n en fonction du nombre de noeuds de l\'arbre à parser')
-plt.legend(("Parser XML", "Parser DOT", "Parser STR"), 'best')
-plt.savefig("execTimeParsers.png")
+#plt.figure(2)
+#plt.loglog()
+#plt.plot(nbNode, execTimeXML, 'b')
+#plt.plot(nbNode, execTimeDOT, 'r')
+#plt.plot(nbNode, execTimeSTR, 'g')
+#plt.xlabel('Nombre de noeuds')
+#plt.ylabel('Temps d\'exécution (ms)')
+#plt.title('Temps d\'exécution des parser \n en fonction du nombre de noeuds de l\'arbre à parser')
+#plt.legend(("Parser XML", "Parser DOT", "Parser STR"), 'best')
+#plt.savefig("execTimeParsers.png")
 
-plt.figure(3)
-plt.loglog()
-plt.plot(nbNode, execTimetoAsy, 'b')
-plt.plot(nbNode, execTimetoTikZ, 'g')
-plt.xlabel('Nombre de noeuds')
-plt.ylabel('Temps d\'exécution (ms)')
-plt.title('Temps d\'exécution des générateurs Asymptote et TikZ \n'+
-		  ' en fonction du nombre de noeuds de l\'arbre à afficher')
-plt.legend(("Asymptote", "TikZ"), 'best')
-plt.savefig("execTimeGenerators.png")
+#plt.figure(3)
+#plt.loglog()
+#plt.plot(nbNode, execTimetoAsy, 'b')
+#plt.plot(nbNode, execTimetoTikZ, 'g')
+#plt.xlabel('Nombre de noeuds')
+#plt.ylabel('Temps d\'exécution (ms)')
+#plt.title('Temps d\'exécution des générateurs Asymptote et TikZ \n'+
+		  #' en fonction du nombre de noeuds de l\'arbre à afficher')
+#plt.legend(("Asymptote", "TikZ"), 'best')
+#plt.savefig("execTimeGenerators.png")
 
-plt.figure(4)
-plt.plot(nbNodeNX, execTimetoNXpng, 'r')
-plt.plot(nbNodeNX, execTimetoNXpdf, 'g')
-plt.plot(nbNodeNX, execTimetoNXeps, 'b')
-plt.plot(nbNodeNX, execTimetoNXsvg, 'm')
-plt.xlabel('Nombre de noeuds')
-plt.ylabel('Temps d\'exécution (ms)')
-plt.title('Temps d\'exécution du générateur NetworkX + Pyplot en fonction du \n'+
-		  'nombre de noeuds de l\'arbre à afficher et du type de sortie demandé')
-plt.legend(("NetworkX format PNG", "NetworkX format PDF", "NetworkX format EPS",
-			"NetworkX format SVG"), 'best')
-plt.savefig("execTimeNX.png")
+#plt.figure(4)
+#plt.plot(nbNodeNX, execTimetoNXpng, 'r')
+#plt.plot(nbNodeNX, execTimetoNXpdf, 'g')
+#plt.plot(nbNodeNX, execTimetoNXeps, 'b')
+#plt.plot(nbNodeNX, execTimetoNXsvg, 'm')
+#plt.xlabel('Nombre de noeuds')
+#plt.ylabel('Temps d\'exécution (ms)')
+#plt.title('Temps d\'exécution du générateur NetworkX + Pyplot en fonction du \n'+
+		  #'nombre de noeuds de l\'arbre à afficher et du type de sortie demandé')
+#plt.legend(("NetworkX format PNG", "NetworkX format PDF", "NetworkX format EPS",
+			#"NetworkX format SVG"), 'best')
+#plt.savefig("execTimeNX.png")
 
-plt.figure(5)
-plt.loglog()
-plt.plot(nbNode, execTimeCoord, 'b')
+#plt.figure(5)
+#plt.loglog()
+#plt.plot(nbNode, execTimeCoord, 'b')
+#plt.xlabel('Nombre de noeuds')
+#plt.ylabel('Temps d\'exécution (ms)')
+#plt.title('Temps de calcul des coordonnées des noeuds \n'+
+		  #' en fonction du nombre de noeuds de l\'arbre reçu en entrée')
+#plt.savefig("execTimeCoord.png")
+
+plt.figure(6)
+plt.plot(nbNodeNX, execTimeGV, 'r')
+plt.plot(nbNodeNX, execTimeXMLAsy, 'b')
 plt.xlabel('Nombre de noeuds')
 plt.ylabel('Temps d\'exécution (ms)')
-plt.title('Temps de calcul des coordonnées des noeuds \n'+
-		  ' en fonction du nombre de noeuds de l\'arbre reçu en entrée')
-plt.savefig("execTimeCoord.png")
+plt.title('Comparaison entre la meilleure combinaison de \n'+
+		  'TreeDisplay (XML + Asymptote) et GraphViz')
+plt.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'best')
+plt.savefig("execTimeGV.png")
