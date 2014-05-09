@@ -31,9 +31,9 @@ def toNetworkX(treeToDraw, addLabels=False, outputfile="treeNetworkX", outputfor
 		print("Generating NetworkX...")
 		(G, pos) = toNetworkXrec(treeToDraw)
 		print("Printing...")
-		plt.figure(1)
 		plt.clf()
 		plt.gca().invert_yaxis()
+		nx.draw(G, pos, with_labels=False, node_size=node_size)
 		# Draw the labels a little upper, so they don't overlap the nodes
 		if (addLabels):
 			node_labels = nx.get_node_attributes(G,'label')
@@ -41,17 +41,17 @@ def toNetworkX(treeToDraw, addLabels=False, outputfile="treeNetworkX", outputfor
 			for k, v in pos.items():
 				pos_labels[k]=(v[0], v[1]-0.1)
 			nx.draw_networkx_labels(G, pos_labels, labels=node_labels, with_labels=True, node_size=node_size)
-		else :
-			nx.draw(G, pos, with_labels=False, node_size=node_size)
-		print("Saving figure...")
 		plt.savefig(outputfile+'.'+outputformat)
 		G.clear()
 	else :
 		print("Tree must not be empty.")
 
 #Aux rec function
-def toNetworkXrec(treeToDraw, pos=dict(), G=nx.Graph()) :
+def toNetworkXrec(treeToDraw, pos=None) :
+	if (not(pos)) :
+		pos=dict()
 	#create a graph and add the root and its position
+	G=nx.Graph()
 	G.add_node(hex(id(treeToDraw)), label=treeToDraw.label)
 	pos[hex(id(treeToDraw))] = (treeToDraw.x, treeToDraw.y)
 	#print("noeud courant : ",treeToDraw.label)
@@ -64,6 +64,11 @@ def toNetworkXrec(treeToDraw, pos=dict(), G=nx.Graph()) :
 			#the current tree is not a leaf ->
 			#add one edge from the root to each son, make a graph
 			#from each son, and combine all the results
+			#G.add_edge(treeToDraw.label, t.label)
 			G.add_edge(hex(id(treeToDraw)), hex(id(t)))
-			(G, pos) = toNetworkXrec(t, pos, G)
+			(H, pos2) = toNetworkXrec(t, pos)
+			for (node, data) in H.nodes_iter(data=True):
+				G.add_node(node, **data)
+			G.add_edges_from(H.edges())
+			pos.update(pos2)
 	return (G, pos)
