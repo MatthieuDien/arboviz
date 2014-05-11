@@ -1,0 +1,11 @@
+\frametitle{Mots bien parenthésés}
+\begin{block}{Grammaire respectée}
+\begin{verbatim}
+ARBRE : '(' LABEL NOEUDS ')'
+NOEUDS : ARBRE NOEUDS | e
+LABEL : [a-zA-Z1-9]* | e
+\end{verbatim}
+\end{block}
+\begin{exampleblock}{Exemple}
+L'arbre IMAGE est représenté par (()(())).
+\end{exampleblock}

@@ -1,0 +1,98 @@
+\section{Étude de départ}
+
+\subsection{TikZ}
+
+\begin{frame}
+	\frametitle{TikZ - Arbre de grande taille}
+	Pas plus de 576 n\oe uds !
+\end{frame}
+
+\begin{frame}
+	\frametitle{TikZ - Arbre de petite taille avec labels}
+	image arbre avec labels
+\end{frame}
+
+\subsection{Asymptote}
+
+\begin{frame}
+	\frametitle{Asymptote - Arbre de grande taille}
+	image arbre
+\end{frame}
+
+\begin{frame}
+	\frametitle{Asymptote - Arbre de petite taille avec labels}
+	image arbre avec labels
+\end{frame}
+
+\subsection{NetworkX + Matplotlib}
+
+\begin{frame}
+	\frametitle{NetworkX - Arbre de grande taille}
+	image arbre
+\end{frame}
+
+\begin{frame}
+	\frametitle{NetworkX - Arbre de petite taille avec labels}
+	image arbre avec labels
+\end{frame}
+
+
+%\chapter{Étude préliminaire}
+%
+%\paragraph{}Le but de cette étude préliminaire est de trouver un outil adapté à la représentation d'arbres de grande taille. Étudions les performances de TikZ, Asymptote et NetworkX pour la génération d'un cas particulier d'arbres: les chaînes.
+%
+%	\section{TikZ}
+%
+%\paragraph{}TikZ est un package \LaTeX{} permettant la création de graphiques.
+%
+%\paragraph{}On va utiliser le code Python suivant pour générer du code TikZ décrivant un arbre linéaire d'une taille passée en paramètre.
+%\lstinputlisting[language=Python]{testTikz.py}
+%
+%		\subsection{$500$ n\oe uds}
+%
+%\paragraph{}On utilise le code précédent pour générer un arbre linéaire de taille $500$. On insère le code obtenu dans un fichier \LaTeX{} pour voir le résultat. Le fichier \LaTeX{} compile et le résultat est aux figures \ref{arbre500TikZA} et \ref{arbre500TikZB}.
+%
+%		\subsection{$10000$ n\oe uds}
+%		
+%\paragraph{}On utilise maintenant le même code mais pour avoir un arbre de $10000$ n\oe uds. Le fichier \LaTeX{} ne compile plus. On obtient l'erreur \verb|dimension too large| à la ligne:
+%\begin{lstlisting}
+%\node (a576) at (0,576) {$576$};
+%\end{lstlisting}
+%
+%\paragraph{} Si l'arbre est trop grand, essayons de réduire sa taille: on diminue l'échelle, on diminue la distance entre deux points et on supprime les labels. L'erreur persiste au même endroit. TikZ limite notre arbre à $575$ n\oe uds à la verticale. Peut-être la limite serait-elle différente si les n\oe uds était répartis autrement.
+%
+%	\section{Asymptote}
+%
+%\paragraph{}Asymptote est un langage de description de dessins vectoriels. Un package permet de le compiler dans un fichier \LaTeX{} mais le code asymptote peut aussi être autonome.
+%
+%\paragraph{}On va utiliser le code Python suivant pour générer du code Asymptote décrivant un arbre linéaire d'une taille passée en paramètre.
+%\lstinputlisting[language=Python]{testAsymptote.py}
+%
+%		\subsection{$500$ n\oe uds}
+%		
+%\paragraph{}On commence doucement en générant un arbre de $500$ n\oe uds. On insère le code obtenu dans un fichier \LaTeX{} comme précédemment. Le fichier compile et le résultat obtenu est celui des figures \ref{arbre500AsyA} et \ref{arbre500AsyB}.
+%
+%		\subsection{$10000$ n\oe uds}
+%\paragraph{}On recommence en mettant la barre à $10000$ n\oe uds. Le fichier compile sans problème et le résultat est celui des figures \ref{arbre10000AsyA} et \ref{arbre10000AsyB}.
+%	
+%	\section{NetworkX accompagné de Matplotlib}
+%	
+%\paragraph{}NetworkX est une bibliothèque Python pour l'étude des graphes, conçue pour fonctionner sur des grands graphes.
+%
+%\paragraph{}Matplotlib est aussi une bibliothèque Python mais qui permet quant à elle de générer une image 2D dans différents formats de sortie possible comme par exemple un png, un pdf ou un svg.
+%
+%\paragraph{}On va utiliser le code Python suivant pour générer du code NetworkX décrivant un arbre linéaire d'une taille passée en paramètre.
+%\lstinputlisting[language=Python]{testNetworkx.py}
+%
+%		\subsection{$500$ n\oe uds}
+%\paragraph{}De même que précédemment, on génère d'abord un arbre de $500$ n\oe uds. On choisi le format de sortie png. Le résultat est visible aux figures \ref{arbre500NkxA} et \ref{arbre500NkxB}.
+%		
+%		\subsection{$10000$ n\oe uds}
+%\paragraph{}Passons maintenant à $10000$ n\oe uds. Le résultat est aux figures \ref{arbre10000NkxA} et \ref{arbre10000NkxB}.
+%	
+%	\section{Conclusion}
+%	
+%\paragraph{}TikZ permet une représentation claire d'un arbre avec ses labels. En effet, même avec $500$ n\oe uds, les labels sont lisibles si on zoome suffisamment. Cependant, une limite a rapidement été atteinte. TikZ serait préférable pour la représentation de petits arbres avec (ou sans!) labels.
+%\paragraph{}Asymptote permet de représenter de grands arbres. Son point faible est la représentation des labels. Cependant, les labels sont compilés avec \LaTeX{} ce qui peut permettre d'avoir des labels un peu plus évolués qu'une chaîne de caractères, une fois la taille des labels maîtrisée.
+%\paragraph{}NetworkX et Matplotlib permettent plusieurs formats de sortie différents. Cela pourrait être utile aux non-utilisateurs de \LaTeX{}. Cependant, l'affichage des labels n'est pas non plus très optimal.
+%\paragraph{}Notons tout de même que cette étude préliminaire ne prend pas en compte le temps de calcul des coordonnées, ce qui est le c\oe ur de notre projet et qui est expliqué dans le chapitre suivant.
