@@ -1,0 +1,21 @@
+Pourquoi ? -> D
+Tendance = répartition hauteur/largeur, apparence générale
+
+Principes : E -> 1, 3, 5
+            D -> 2, 4, 6
+           
+(on part du principe qu'on ne fait pas les algos existants)
+
+Paramètres -> E
+Grammaires :
+Str -> D
+DOT -> E
+XML -> D
+
+Structure de données -> D
+
+Algo + fonctionnement -> E
+
+Perf -> D
+
+Rendu + Conclusion -> E
