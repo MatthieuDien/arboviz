@@ -2,10 +2,38 @@
 
 \subsection{Arbre de grande taille sans labels}
 \begin{frame}
-les 4 arbres sur un même slide
+\begin{columns}[t]
+\column{.5\textwidth}
+\centering
+\includegraphics[height=3.5cm]{renduGV}\\ %%graphViz ,height=3.5cm
+GraphViz \\
+\includegraphics[width=5cm]{renduNX}\\
+NetworkX %%NX ,height=4cm
+\column{.5\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.05, every node/.style={scale=0.05}, node distance=1pt]
+\input {Images/renduTikZ}
+\end{tikzpicture}\\ %%tikz
+TikZ\\
+%\includegraphics[width=5cm]{\input {Images/renduAsy}} %%Asy
+\end{columns}
 \end{frame}
 
 \subsection{Arbre de petite taille avec labels}
 \begin{frame}
-les 4 arbres sur un même slide
+\begin{columns}[t]
+\column{.5\textwidth}
+\centering
+\includegraphics[height=3.5cm]{renduGVLabels}\\ %%graphViz ,height=3.5cm
+GraphViz\\
+\includegraphics[width=5cm]{renduNXLabels}\\ %%NX ,height=4cm
+NetworkX
+\column{.5\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.3, every node/.style={scale=0.3}, node distance=1pt]
+\input {Images/renduTikZLabels}
+\end{tikzpicture}\\ %%tikz
+TikZ\\
+%\includegraphics[width=5cm]{\input {Images/renduAsyLabels}} %%Asy
+\end{columns}
 \end{frame}
