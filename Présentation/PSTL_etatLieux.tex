@@ -2,17 +2,71 @@
 
 \subsection{Principes à respecter pour un affichage élégant}
 
+%\begin{frame}
+%	\frametitle{Principes à respecter pour un affichage élégant}
+%	\textit{Idée : dessiner un arbre élégant et montrer ce qui le rend élégant. Entourer les noeuds au même niveau pour le principe 2, etc etc. Mais ne pas cumuler. Faire une pseudo-animation pour montrer un principe à chaque étape de l'animation, l'un après l'autre}
+%	\begin{enumerate}
+%		\item Les arêtes de l'arbre ne doivent pas s'intersecter.
+%		\item Les n\oe{}uds de même profondeur doivent être dessinés sur la même ligne horizontale.
+%		\item Les arbres doivent être dessinés de la manière la plus compacte possible.
+%		\item Un n\oe{}ud parent doit être centré par rapport à ses fils.
+%		\item Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
+%		\item Les n\oe{}uds fils d'un n\oe{}ud père doivent être espacés de manière homogène.
+%	\end{enumerate}
+%\end{frame}
+
 \begin{frame}
-	\frametitle{Principes à respecter pour un affichage élégant}
-	\textit{Idée : dessiner un arbre élégant et montrer ce qui le rend élégant. Entourer les noeuds au même niveau pour le principe 2, etc etc. Mais ne pas cumuler. Faire une pseudo-animation pour montrer un principe à chaque étape de l'animation, l'un après l'autre}
-	\begin{enumerate}
-		\item Les arêtes de l'arbre ne doivent pas s'intersecter.
-		\item Les n\oe{}uds de même profondeur doivent être dessinés sur la même ligne horizontale.
-		\item Les arbres doivent être dessinés de la manière la plus compacte possible.
-		\item Un n\oe{}ud parent doit être centré par rapport à ses fils.
-		\item Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
-		\item Les n\oe{}uds fils d'un n\oe{}ud père doivent être espacés de manière homogène.
-	\end{enumerate}
+	\begin{center}	
+		\includegraphics[width=7cm]{exempleIntro}<1->\\
+		\begin{block}{Principe 1}<2->
+		Les arêtes de l'arbre ne doivent pas s'intersecter.
+		\end{block}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{center}	
+		\includegraphics[width=7cm]{exempleIntro}<1->\\
+		\begin{block}{Principe 2}<2->
+		Les n\oe{}uds de même profondeur doivent être dessinés sur la même ligne horizontale.
+		\end{block}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{center}	
+		\includegraphics[width=7cm]{exempleIntro}<1->\\
+		\begin{block}{Principe 3}<2->
+		Les arbres doivent être dessinés de la manière la plus compacte possible.
+		\end{block}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{center}	
+		\includegraphics[width=7cm]{exempleIntro}<1->\\
+		\begin{block}{Principe 4}<2->
+		Un n\oe{}ud parent doit être centré par rapport à ses fils.
+		\end{block}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{center}	
+		\includegraphics[width=7cm]{exempleIntro}<1->\\
+		\begin{block}{Principe 5}<2->
+		Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
+		\end{block}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{center}	
+		\includegraphics[width=7cm]{exempleIntro}<1->\\
+		\begin{block}{Principe 6}<2->
+		Les n\oe{}uds fils d'un n\oe{}ud père doivent être espacés de manière homogène.
+		\end{block}
+	\end{center}
 \end{frame}
 
 \subsection{Algorithmes existants}
@@ -46,13 +100,9 @@
 	\begin{itemize}
 		\item Respecte tous les principes
 	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Optimisations possible}
+	Inconvénient
 	\begin{itemize}
-		\item Utilisation du contour de l'arbre pour ne pas parcourir l'arbre en profondeur
-		\item Utilisation Threads (mini def à l'oral)
+		\item Ne concerne que les arbres binaires
 	\end{itemize}
 \end{frame}
 

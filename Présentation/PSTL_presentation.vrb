@@ -1,11 +1,25 @@
-\frametitle{Mots bien parenthésés}
-\begin{block}{Grammaire respectée}
-\begin{verbatim}
-ARBRE : '(' LABEL NOEUDS ')'
-NOEUDS : ARBRE NOEUDS | e
-LABEL : [a-zA-Z1-9]* | e
-\end{verbatim}
-\end{block}
-\begin{exampleblock}{Exemple}
-L'arbre IMAGE est représenté par (()(())).
-\end{exampleblock}
+\frametitle{XML}
+    \begin{block}{Grammaire respectée}
+    \begin{verbatim}
+    XML : <?xml version="1.0"?><tree> NOEUDS </tree>
+    NOEUDS : NOEUD NOEUDS | e
+    NOEUD : <node type=TAG id=ID> NOEUDS </noeud>
+            | <leaf type=TAG id=ID />
+    TAG : " [a-zA-Z1-9]* "
+    ID : [0-9]*
+    \end{verbatim}
+    \end{block}
+    \begin{exampleblock}{Exemple}
+    L'arbre IMAGE est représenté par :
+    \begin{verbatim}
+    <?xml version="1.0"?>
+    <tree>
+        <node type="" id=1>
+            <leaf type="" id=2 />
+            <node type="" id=3>
+                <leaf type="" id=4 />
+            </node>
+     </node>
+    <tree>
+    \end{verbatim}
+    \end{exampleblock}

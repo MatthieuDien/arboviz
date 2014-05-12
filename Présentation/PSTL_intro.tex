@@ -1,36 +1,27 @@
 \section{Introduction}
 
-\begin{frame}
-	\frametitle{Introduction}
-	Slide sur graphviz : exemple de rendu avec GraphViz avec minimisation de largeur \\
-	On ne peut pas représenter des arbres de recherche.
+\begin{frame}[allowframebreaks]
+	\frametitle{Pourquoi ?}
+	\begin{center}
+		\includegraphics[width=7cm]{exempleIntro} \\
+		\begin{itemize}
+			\item Pourquoi des arbres ? Structure primordiale en informatique. 
+			\item Pourquoi afficher des arbres de grande taille ? Pour observer des tendances. %répartition hauteur/largeur, forme générale, etc
+		\end{itemize}
+	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Introduction}
-	\begin{itemize}
-		\item Objectif : Affichage élégant et efficace de tout type d'arbre
-		\item Problèmes \begin{itemize}
+	\frametitle{Objectif}
+	\begin{block}{Objectif du projet}
+		Affichage élégant et efficace de tout type d'arbre
+	\end{block}
+	\begin{alertblock}{Problèmes}
+		\begin{itemize}
 			\item Qu'est-ce qu'un affichage élégant ?
 			\item Comment optimiser le calcul de la mise en page ?
 		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Introduction}
-	Entrées prises en compte :
-	\begin{itemize}
-		\item Mots bien parenthésés (.txt)
-		\item JSON (.xml)
-		\item DOT (.dot) avec l'hypothèse que le graphe représenté est un arbre
-	\end{itemize}
-	Sorties prises en compte :
-	\begin{itemize}
-		\item TikZ (module \LaTeX )
-		\item Asymptote (alternative à TikZ)
-		\item NetworkX + Matplotlib (génère une image ou un pdf)
-	\end{itemize}
+	\end{alertblock}
 \end{frame}
 
 

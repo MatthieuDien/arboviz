@@ -42,7 +42,7 @@ LABEL : [a-zA-Z1-9]* | e
 \begin{verbatim}
 DOT : STRICT GRAPH ID '{' SEQINST '}'
 STRICT : strict | e
-GRAPH = diagraph | graph
+GRAPH = digraph | graph
 SEQINST : INST ';' SEQINST | e
 INST : ID '[' label = "LABEL" ']' | ID LINK ID
 LINK : -- | ->
@@ -55,7 +55,7 @@ LABEL : [a-zA-Z1-9]* | e
 \paragraph{}Le parser XML (cf. \ref{xmlParser})respecte la grammaire ci-dessous. Comme beaucoup de langages de programmation, Python a une librairie dédiée au XML. Nous l'avons utilisée.
 		
 \begin{verbatim}
-XML : <?xml version="1.0"?><tree> NOEUDS <tree>
+XML : <?xml version="1.0"?><tree> NOEUDS </tree>
 NOEUDS : NOEUD NOEUDS | e
 NOEUD : <node type=TAG id=ID> NOEUDS </noeud> | <leaf type=TAG id=ID />
 TAG : " [a-zA-Z1-9]* "

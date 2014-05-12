@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.11)  12 MAY 2014 01:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.11)  12 MAY 2014 16:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -942,6 +942,9 @@ File: listings.cfg 2013/08/26 1.5b listings configuration
 ))
 Package: listings 2013/08/26 1.5b (Carsten Heinz)
 
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
 (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks43
@@ -1372,69 +1375,238 @@ LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4> not available
 (./PSTL_presentation.toc) [2
 
 
-] [3
+]
+<Images/exempleIntro.png, id=119, 362.0727pt x 258.0039pt>
+File: Images/exempleIntro.png Graphic file (type png)
 
-] [4
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 12.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [3
 
-] [5
+ <./Images/exempleIntro.png>] [4
 
 ])
 \openout2 = `PSTL_etatLieux.aux'.
 
- (./PSTL_etatLieux.tex
-(./PSTL_presentation.toc) [6
+
+(./PSTL_etatLieux.tex (./PSTL_presentation.toc) [5
 
 
 
-] [7
+]
+File: Images/exempleIntro.png Graphic file (type png)
 
-] [8
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 25.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [6
 
-] [9
+]
+File: Images/exempleIntro.png Graphic file (type png)
+ <use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 25.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [7
 
-] [10
+]
+File: Images/exempleIntro.png Graphic file (type png)
 
-] [11
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 34.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [8
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+ <use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 34.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [9
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 43.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [10
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+ <use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 43.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [11
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 52.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [12
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+ <use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 52.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [13
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 61.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [14
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+ <use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 61.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [15
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+
+<use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 70.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [16
+
+]
+File: Images/exempleIntro.png Graphic file (type png)
+ <use Images/exempleIntro.png>
+Package pdftex.def Info: Images/exempleIntro.png used on input line 70.
+(pdftex.def)             Requested size: 199.16928pt x 141.9262pt.
+ [17
+
+] [18
+
+]
+[19
+
+] [20
 
 ])
 \openout2 = `PSTL_choixImplem.aux'.
 
- (./PSTL_choixImplem.tex
-(./PSTL_presentation.toc) [12
+ (./PSTL_choixImplem.tex (./PSTL_presentation.toc) [21
 
+
+
+] [22
+
+]
+\openout4 = `PSTL_presentation.vrb'.
+
+
+(./PSTL_presentation.vrb) [23
+
+]
+\openout4 = `PSTL_presentation.vrb'.
+
+ (./PSTL_presentation.vrb) [24
+
+] [25
 
 
 ]
 \openout4 = `PSTL_presentation.vrb'.
 
- (./PSTL_presentation.vrb) [13
+
+(./PSTL_presentation.vrb) [26
+
+] [27
+
+
+] (../Src/tree.py) [28
+
+] (../Src/tree.py)
+[29
+
+] [30
+
+
+] (../Src/tree.py) [31
+
+] [32
 
 ])
 \openout2 = `PSTL_tests.aux'.
 
+ (./PSTL_tests.tex
+(./PSTL_presentation.toc) [33
 
-(./PSTL_tests.tex (./PSTL_presentation.toc) [14
 
 
+]
+<Images/execTimeParsers.png, id=404, 578.16pt x 433.62pt>
+File: Images/execTimeParsers.png Graphic file (type png)
 
-])
+<use Images/execTimeParsers.png>
+Package pdftex.def Info: Images/execTimeParsers.png used on input line 8.
+(pdftex.def)             Requested size: 265.55983pt x 199.16928pt.
+ [34
+
+ <./Images/execTimeParsers.png>]
+<Images/execTimeCoord.png, id=410, 578.16pt x 433.62pt>
+File: Images/execTimeCoord.png Graphic file (type png)
+
+<use Images/execTimeCoord.png>
+Package pdftex.def Info: Images/execTimeCoord.png used on input line 15.
+(pdftex.def)             Requested size: 265.55983pt x 199.16928pt.
+ [35
+
+ <./Images/execTimeCoord.png>]
+<Images/execTimeGenerators.png, id=419, 578.16pt x 433.62pt>
+File: Images/execTimeGenerators.png Graphic file (type png)
+
+<use Images/execTimeGenerators.png>
+Package pdftex.def Info: Images/execTimeGenerators.png used on input line 25.
+(pdftex.def)             Requested size: 265.55983pt x 199.16928pt.
+
+<Images/execTimeNX.png, id=420, 578.16pt x 433.62pt>
+File: Images/execTimeNX.png Graphic file (type png)
+
+<use Images/execTimeNX.png>
+Package pdftex.def Info: Images/execTimeNX.png used on input line 25.
+(pdftex.def)             Requested size: 265.55983pt x 199.16928pt.
+ [36
+
+ <./Images/execTimeGenerators.png>] [37
+
+
+ <./Images/execTimeNX.png>] <Images/execTimeGV.png, id=438, 578.16pt x 433.62pt
+>
+File: Images/execTimeGV.png Graphic file (type png)
+
+<use Images/execTimeGV.png>
+Package pdftex.def Info: Images/execTimeGV.png used on input line 32.
+(pdftex.def)             Requested size: 265.55983pt x 199.16928pt.
+ [38
+
+ <./Images/execTimeGV.png>])
 \openout2 = `PSTL_rendu.aux'.
 
  (./PSTL_rendu.tex
-(./PSTL_presentation.toc) [15
+(./PSTL_presentation.toc) [39
 
 
 
 ])
 \openout2 = `PSTL_conclusion.aux'.
 
- (./PSTL_conclusion.tex (./PSTL_presentation.toc) [16
+ (./PSTL_conclusion.tex (./PSTL_presentation.toc) [40
 
 
 
-] [17
+] [41
 
-] [18
+] [42
 
 ])
 \tf@nav=\write6
@@ -1454,7 +1626,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 33.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 33.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 33.
 Package rerunfilecheck Info: File `PSTL_presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 48CAED4C60E0A65B77672D9AB6A434EC;1263.
+(rerunfilecheck)             Checksum: 318BE9EDE2AB2BF11D7F7E8E829B95A4;950.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1463,24 +1635,25 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 33.
  ) 
 Here is how much of TeX's memory you used:
- 18572 strings out of 494962
- 333087 string characters out of 6179434
- 420108 words of memory out of 5000000
- 21244 multiletter control sequences out of 15000+600000
+ 18874 strings out of 494962
+ 336317 string characters out of 6179434
+ 564139 words of memory out of 5000000
+ 21478 multiletter control sequences out of 15000+600000
  22230 words of font info for 61 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 49i,14n,68p,757b,736s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 49i,14n,68p,757b,835s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/d
-iana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsi0900.600pk> </home/diana/.texmf
--var/fonts/pk/ljfour/jknappen/ec/ectt0800.525pk> </home/diana/.texmf-var/fonts/
-pk/ljfour/jknappen/ec/ecss0700.600pk> </home/diana/.texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecss0600.600pk> </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecss0900.600pk> </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.60
-0pk> </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home
-/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0500.600pk>
-Output written on PSTL_presentation.pdf (18 pages, 241223 bytes).
+iana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.525pk> </home/diana/.texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecss0700.600pk> </home/diana/.texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecss0600.600pk> </home/diana/.texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecss0900.600pk> </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/
+ecss0800.600pk> </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.60
+0pk> </home/diana/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0500.600pk></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on PSTL_presentation.pdf (42 pages, 516345 bytes).
 PDF statistics:
- 1059 PDF objects out of 1200 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 875 PDF objects out of 1000 (max. 8388607)
+ 98 named destinations out of 1000 (max. 500000)
+ 263 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -9,11 +9,44 @@
 
 \usepackage{amsmath}
 \usepackage{xcolor}
-\usepackage{graphicx} 
+\usepackage{graphicx}
+\graphicspath{{Images/}}
 \usepackage{color}
 \usepackage{eurosym}
 \usepackage{hyperref}
 \usepackage{listings}	%code
+\usepackage{color}
+\lstset{
+  language=Python,
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize ,
+  breakatwhitespace=true,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{green},
+  deletekeywords={},
+  escapeinside={},
+  extendedchars=false,
+  frame=single,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  morekeywords={},
+  numbers=left, %none, left, right
+  numbersep=5pt,
+  numberstyle=\tiny\color{black},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=2,
+  stringstyle=\color{red},
+  tabsize=2,
+  %title=\lstname
+  literate={à}{{\`a}}1
+           {è}{{\`e}}1
+           {ë}{{\"e}}1
+           {é}{{\'e}}1
+  }
 \usepackage{verbatim}
 \usepackage{color}
 
@@ -25,7 +58,7 @@
 {
 \begin{frame}<beamer>
 \frametitle{Plan de la présentation}
-\tableofcontents[currentsection]
+\tableofcontents[currentsection, hidesubsections]
 \end{frame}
 }
 
@@ -39,3 +72,7 @@
 \useinnertheme[shadow=true]{rounded}
 
 \setbeamerfont{block title}{size={}}
+
+\setbeamertemplate{navigation symbols}{}
+%
+%\addtobeamertemplate{footline}{\insertframenumber / \inserttotalframenumber}

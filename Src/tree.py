@@ -35,12 +35,6 @@ class Tree(object):
 		else:
 			self.children = children
 		
-	def nbNode (self):
-		n=1;
-		for child in self.children :
-			n+=child.nbNode()
-		return n
-		
 	def computeCoord (self):
 		self.setup()
 		self.addOffsets()
@@ -124,6 +118,12 @@ class Tree(object):
 		for c in self.children:
 			c.toStrFileRec(f)
 		f.write(")")
+		
+	def nbNode (self):
+		n=1;
+		for child in self.children :
+			n+=child.nbNode()
+		return n
 		
 	#def toXmlFile (self, fileName="treeXml"):
 	

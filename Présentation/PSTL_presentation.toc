@@ -1,20 +1,16 @@
 \beamer@endinputifotherversion {3.24pt}
 \select@language {french}
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
-\beamer@sectionintoc {2}{\IeC {\'E}tat des lieux}{6}{0}{2}
-\beamer@subsectionintoc {2}{1}{Principes \IeC {\`a} respecter pour un affichage \IeC {\'e}l\IeC {\'e}gant}{7}{0}{2}
-\beamer@subsectionintoc {2}{2}{Algorithmes existants}{8}{0}{2}
-\beamer@sectionintoc {3}{Choix d'impl\IeC {\'e}mentation}{12}{0}{3}
-\beamer@subsectionintoc {3}{1}{Fonctionnement g\IeC {\'e}n\IeC {\'e}ral}{13}{0}{3}
-\beamer@subsectionintoc {3}{2}{Parsing}{13}{0}{3}
-\beamer@subsectionintoc {3}{3}{Algorithme de calcul des coordonn\IeC {\'e}es}{14}{0}{3}
-\beamer@subsectionintoc {3}{4}{G\IeC {\'e}n\IeC {\'e}ration de la sortie}{14}{0}{3}
-\beamer@sectionintoc {4}{\IeC {\'E}tude de performances}{14}{0}{4}
-\beamer@subsectionintoc {4}{1}{Les parsers}{15}{0}{4}
-\beamer@subsectionintoc {4}{2}{Calcul des coordonn\IeC {\'e}es}{15}{0}{4}
-\beamer@subsectionintoc {4}{3}{G\IeC {\'e}n\IeC {\'e}ration de la sortie}{15}{0}{4}
-\beamer@subsectionintoc {4}{4}{GraphViz vs TreeDisplay}{15}{0}{4}
-\beamer@sectionintoc {5}{Comparaison des rendus}{15}{0}{5}
-\beamer@subsectionintoc {5}{1}{Arbre de grande taille sans labels}{16}{0}{5}
-\beamer@subsectionintoc {5}{2}{Arbre de petite taille avec labels}{16}{0}{5}
-\beamer@sectionintoc {6}{Conclusion}{16}{0}{6}
+\beamer@sectionintoc {2}{\IeC {\'E}tat des lieux}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Principes \IeC {\`a} respecter pour un affichage \IeC {\'e}l\IeC {\'e}gant}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Algorithmes existants}{18}{0}{2}
+\beamer@sectionintoc {3}{Impl\IeC {\'e}mentation}{21}{0}{3}
+\beamer@subsectionintoc {3}{1}{Fonctionnement g\IeC {\'e}n\IeC {\'e}ral}{22}{0}{3}
+\beamer@subsectionintoc {3}{2}{Parsing}{23}{0}{3}
+\beamer@subsectionintoc {3}{3}{Calcul des coordonn\IeC {\'e}es}{28}{0}{3}
+\beamer@subsectionintoc {3}{4}{G\IeC {\'e}n\IeC {\'e}ration de la sortie}{32}{0}{3}
+\beamer@sectionintoc {4}{\IeC {\'E}tude de performances}{33}{0}{4}
+\beamer@sectionintoc {5}{Comparaison des rendus}{39}{0}{5}
+\beamer@subsectionintoc {5}{1}{Arbre de grande taille sans labels}{40}{0}{5}
+\beamer@subsectionintoc {5}{2}{Arbre de petite taille avec labels}{40}{0}{5}
+\beamer@sectionintoc {6}{Conclusion}{40}{0}{6}
