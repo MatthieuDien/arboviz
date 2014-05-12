@@ -4,4 +4,12 @@ Src/XML_tests/treeXml1To1500/*
 Src/XML_tests/treeXml1501To1900/*
 Src/XML_tests/treeXml2000To30000/*
 Src/XML_tests/treeXml30100To33300/*
-
+Presentation/built/*
+Presentation/*.aux
+Presentation/*.log
+Presentation/*.pre
+Presentation/*.nav
+Presentation/*.out
+Presentation/*.snm
+Presentation/*.vrb
+Presentation/*.toc
