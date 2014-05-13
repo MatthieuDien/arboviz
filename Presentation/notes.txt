@@ -1,4 +1,5 @@
 Pourquoi ? -> D
+Exemples : Trie, arbre de huffman
 Tendance = répartition hauteur/largeur, apparence générale
 
 Principes : E -> 1, 3, 5
