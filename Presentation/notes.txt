@@ -2,14 +2,18 @@ Pourquoi ? -> D
 Exemples : Trie, arbre de huffman
 Tendance = répartition hauteur/largeur, apparence générale
 
-Principes : E -> 1, 3, 5
-            D -> 2, 4, 6
+Principes : E -> 1, 2, 3
+            D -> 4, 5, 6
            
 (on part du principe qu'on ne fait pas les algos existants)
 
 Paramètres -> E
+TikZ et Asymptote = intégration facile à un rapport LaTeX
+NX = utilisable par tous + utile pour annotation
 Grammaires :
 Str -> D
+label = peut apparaître plusieurs fois -> forcément un arbre
+parenthèses définissent structure de l'arbre
 DOT -> E
 XML -> D
 
