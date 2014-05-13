@@ -1,22 +1,22 @@
 \section{Implémentation}
 
 \subsection{Fonctionnement général}
-
-\begin{frame}
-    \frametitle{Paramètres}
-    Entrées prises en compte :
-    \begin{itemize}
-        \item Mots bien parenthésés
-        \item XML
-        \item DOT %avec l'hypothèse que le graphe représenté est un arbre
-    \end{itemize}
-    Sorties prises en compte :
-    \begin{itemize}
-        \item TikZ %(module \LaTeX )
-        \item Asymptote %(alternative à TikZ)
-        \item NetworkX + Matplotlib %(génère une image ou un PDF en Python)
-    \end{itemize}
-\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Paramètres}
+%    Entrées prises en compte :
+%    \begin{itemize}
+%        \item Mots bien parenthésés
+%        \item XML
+%        \item DOT %avec l'hypothèse que le graphe représenté est un arbre
+%    \end{itemize}
+%    Sorties prises en compte :
+%    \begin{itemize}
+%        \item TikZ %(module \LaTeX )
+%        \item Asymptote %(alternative à TikZ)
+%        \item NetworkX + Matplotlib %(génère une image ou un PDF en Python)
+%    \end{itemize}
+%\end{frame}
 
 \subsection{Parsing}
 
@@ -111,22 +111,15 @@
 	\lstinputlisting[language=Python, firstline=77, lastline=87]{../Src/tree.py}
 \end{frame}
 
-\subsection{Génération de la sortie}
-
-\begin{frame}
-	\frametitle{Fonctionnement}
-	Points communs :
-	\begin{itemize}
-		\item Parcours en profondeur
-		\item Génération de la sortie au fur et à mesure	
-	\end{itemize}
-	~\\
-	Différence :
-	\begin{itemize}
-		\item TikZ et Asymptote $\Rightarrow$ Fichier .tex
-		\item NetworkX $\Rightarrow$ Image ou PDF	
-	\end{itemize}
-\end{frame}
+%\subsection{Génération de la sortie}
+%
+%\begin{frame}
+%	\frametitle{Fonctionnement}
+%	\begin{itemize}
+%		\item Parcours en profondeur
+%		\item Génération de la sortie au fur et à mesure	
+%	\end{itemize}
+%\end{frame}
 
 
 %    \subsection{Structure d'arbre}

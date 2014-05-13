@@ -1,10 +1,13 @@
 ***Pourquoi ? -> D
 Exemples : Trie, arbre de huffman
 Tendance = répartition hauteur/largeur, apparence générale
+arbre tend vers la droite
 
+TR : élégance subjective -> on arrive tout de même à définir quelques principes
 -------------------------------------------------------------
-***Principes : E -> 1, 2, 3
-            D -> 4, 5, 6
+***Principes : 
+E -> intersection arêtes / noeud même prof = même ligne horizontale (N23) / ss-arbre tjr dessiné de la même façon (21-31 / 11-23)
+D -> père centré (N11, N12) / noeuds fils homogènes (21->25) / compacte
            
 (on part du principe qu'on ne fait pas les algos existants)
 
@@ -22,16 +25,38 @@ DOT -> E
 id unique à un noeud -> graphe potentiel
 
 XML -> D
+Structure d'arbre classique 
+  + tag pour info supplémentaire si on veut
 
-
--------------------------------------------------------------
+***Calculs coord :
 Structure de données -> D
+offset : décallage à faire aux ss-arbres
+hauteur = y max de l'arbre
+largeur = x max de l'arbre
+  -> hauteur et largeur n'ont de sens qu'à la racine
+
+Algo -> E
 
 -------------------------------------------------------------
-Algo + fonctionnement -> E
-
--------------------------------------------------------------
-Perf -> D
+***Perf -> D
+10⁶ noeuds en 100aine de sec
+Générateurs : parcours en prof + génération progressive de la sortie
 
 -------------------------------------------------------------
 Rendu + Conclusion -> E
+
+***Rendu
+Comparaison grande taille vs labels car label inutiles sur les arbres de grande taille
+
+Avec label
+Différentes sorties
+TikZ optimisé pour labels
+Asymptote = labels en latex
+networkX = bien pour non-latexien
+
+Sans label
+tikz limité
+graphviz a ses propres politiques de placement
+
+***Conclusion
+

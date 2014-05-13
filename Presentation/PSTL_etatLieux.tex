@@ -2,22 +2,24 @@
 
 \subsection{Principes à respecter pour un affichage élégant}
 
-%\begin{frame}
-%	\frametitle{Principes à respecter pour un affichage élégant}
-%	\textit{Idée : dessiner un arbre élégant et montrer ce qui le rend élégant. Entourer les noeuds au même niveau pour le principe 2, etc etc. Mais ne pas cumuler. Faire une pseudo-animation pour montrer un principe à chaque étape de l'animation, l'un après l'autre}
-%	\begin{enumerate}
-%		\item Les arêtes de l'arbre ne doivent pas s'intersecter.
-%		\item Les n\oe{}uds de même profondeur doivent être dessinés sur la même ligne horizontale.
-%		\item Les arbres doivent être dessinés de la manière la plus compacte possible.
-%		\item Un n\oe{}ud parent doit être centré par rapport à ses fils.
-%		\item Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
-%		\item Les n\oe{}uds fils d'un n\oe{}ud père doivent être espacés de manière homogène.
-%	\end{enumerate}
-%\end{frame}
+\begin{frame}
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ0}
+			\end{tikzpicture}%}
+		\end{figure}
+		Que faire pour améliorer cet arbre?
+	\end{center}
+\end{frame}
 
 \begin{frame}
-	\begin{center}	
-		\includegraphics[width=7cm]{exempleIntro}<1->\\
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ0}
+			\end{tikzpicture}%}
+		\end{figure}
 		\begin{block}{Principe 1}<2->
 		Les arêtes de l'arbre ne doivent pas s'intersecter.
 		\end{block}
@@ -25,8 +27,12 @@
 \end{frame}
 
 \begin{frame}
-	\begin{center}	
-		\includegraphics[width=7cm]{exempleIntro}<1->\\
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ1}
+			\end{tikzpicture}%}
+		\end{figure}
 		\begin{block}{Principe 2}<2->
 		Les n\oe{}uds de même profondeur doivent être dessinés sur la même ligne horizontale.
 		\end{block}
@@ -34,17 +40,25 @@
 \end{frame}
 
 \begin{frame}
-	\begin{center}	
-		\includegraphics[width=7cm]{exempleIntro}<1->\\
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ2}
+			\end{tikzpicture}%}
+		\end{figure}
 		\begin{block}{Principe 3}<2->
-		Les arbres doivent être dessinés de la manière la plus compacte possible.
+		Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
 		\end{block}
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\begin{center}	
-		\includegraphics[width=7cm]{exempleIntro}<1->\\
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ3}
+			\end{tikzpicture}%}
+		\end{figure}
 		\begin{block}{Principe 4}<2->
 		Un n\oe{}ud parent doit être centré par rapport à ses fils.
 		\end{block}
@@ -52,62 +66,78 @@
 \end{frame}
 
 \begin{frame}
-	\begin{center}	
-		\includegraphics[width=7cm]{exempleIntro}<1->\\
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ4}
+			\end{tikzpicture}%}
+		\end{figure}
 		\begin{block}{Principe 5}<2->
-		Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
-		\end{block}
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\begin{center}	
-		\includegraphics[width=7cm]{exempleIntro}<1->\\
-		\begin{block}{Principe 6}<2->
 		Les n\oe{}uds fils d'un n\oe{}ud père doivent être espacés de manière homogène.
 		\end{block}
 	\end{center}
 \end{frame}
 
-%\subsection{Algorithmes existants}
-%
-%\begin{frame}
-%	\frametitle{Knuth}
-%	\begin{center}
-%	\includegraphics[height=3.5cm]{knuth}
-%	\end{center}
-%	Décrit une idée de "slot disponible"\\
-%	Inconvénient :
-%	\begin{itemize}
-%		\item Ne respecte que les principes 1 et 2
-%	\end{itemize}
-%\end{frame}
-%
-%\begin{frame}
-%	\frametitle{Algorithmes de Charles Wetherell et Alfred Shannon}
-%	\begin{center}
-%	\includegraphics[height=3.5cm]{shannon}
-%	\end{center}
-%	Approche Bottom Up pour centrer le père sur ses fils\\
-%	Introduction d'un tableau de slots\\
-%	Inconvénient :
-%	\begin{itemize}
-%		\item Ne respecte pas les principes 4 et 5
-%	\end{itemize}
-%\end{frame}
-%
-%\begin{frame}
-%	\frametitle{The Mods and the Rockers}
-%	Traitement en deux passes\\
-%	Avantage :
-%	\begin{itemize}
-%		\item Respecte tous les principes
-%	\end{itemize}
-%	Inconvénient
-%	\begin{itemize}
-%		\item Ne concerne que les arbres binaires
-%	\end{itemize}
-%\end{frame}
+\begin{frame}
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princ5}
+			\end{tikzpicture}%}
+		\end{figure}
+		\begin{block}{Principe 6}<2->
+		Les arbres doivent être dessinés de la manière la plus compacte possible.
+		\end{block}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		\begin{figure}[h, height=7cm] %\centering \resizebox {!}{7cm} {
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+				\input {Images/princRes}
+			\end{tikzpicture}%}
+		\end{figure}
+		Référence d'un arbre élégant.
+	\end{center}
+\end{frame}
+% 
+% \subsection{Algorithmes existants}
+% 
+% \begin{frame}
+% 	\frametitle{Knuth}
+% 	image exemple site \\
+% 	Décrit une idée de "slot disponible"\\
+% 	Inconvénient
+% 	\begin{itemize}
+% 		\item Ne respecte que les principes 1 et 2
+% 	\end{itemize}
+% \end{frame}
+% 
+% \begin{frame}
+% 	\frametitle{Algorithmes de Charles Wetherell et Alfred Shannon}
+% 	image exemple site \\
+% 	Approche Bottom Up pour centrer le père sur ses fils\\
+% 	Introduction d'un tableau de slots\\
+% 	Inconvénient
+% 	\begin{itemize}
+% 		\item Ne respecte pas les principes 4 et 5
+% 	\end{itemize}
+% \end{frame}
+% 
+% \begin{frame}
+% 	\frametitle{The Mods and the Rockers}
+% 	image exemple site \\
+% 	Traitement en deux passes\\
+% 	Avantage
+% 	\begin{itemize}
+% 		\item Respecte tous les principes
+% 	\end{itemize}
+% 	Inconvénient
+% 	\begin{itemize}
+% 		\item Ne concerne que les arbres binaires
+% 	\end{itemize}
+% \end{frame}
 
 %\chapter{État des lieux}
 %
