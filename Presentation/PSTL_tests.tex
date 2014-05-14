@@ -1,26 +1,27 @@
 \section{Étude de performances}
 
 \begin{frame}
-	\frametitle{Les Parsers}
-	\begin{center}
-	\includegraphics[height=7cm]{execTimeParsers}
-	\end{center}
+	\frametitle{Protocole}
+	\begin{itemize}
+		\item Une centaine d'arbres de taille de l'ordre de $10^{0}$ à $10^{5}$ générés aléatoirement
+		\item Chaque instruction (parser, calcul des coordonnées, générateur) exécutée entre 5 et 10 fois
+		\item Moyenne des temps d'exécution pour chaque instruction
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Bilan général}
+	\begin{itemize}
+		\item Parser \~ X\% du temps d'exécution
+		\item Calcul des coordonnées \~ X\% du temps d'exécution
+		\item Génération de la sortie \~ X\% du temps d'exécution
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Calcul des coordonnées}
 	\begin{center}
 	\includegraphics[height=7cm]{execTimeCoord}
-	\end{center}
-\end{frame}
-
-\begin{frame}[allowframebreaks]
-	\frametitle{Générateurs}
-	\begin{center}
-	\includegraphics[height=7cm]{execTimeGenerators}
-	\end{center}
-	\begin{center}
-	\includegraphics[height=7cm]{execTimeNX}
 	\end{center}
 \end{frame}
 

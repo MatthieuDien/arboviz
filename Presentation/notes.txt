@@ -1,15 +1,17 @@
+nb lignes = 550 + 240 de test
+pourquoi python ? Proche du pseudo-code + recommandation de Genitrini
+
 ***Pourquoi ? -> D
-Exemples : Trie, arbre de huffman
+Exemples : arbre binaire de recherche, arbre de huffman
 Tendance = répartition hauteur/largeur, apparence générale
 arbre tend vers la droite
+Axé sur les ARBRES alors que GraphViz, par ex, les gère assez mal
 
-TR : élégance subjective -> on arrive tout de même à définir quelques principes
+TR : élégance subjective -> on arrive tout de même à définir quelques contraintes
 -------------------------------------------------------------
 ***Principes : 
 E -> intersection arêtes / noeud même prof = même ligne horizontale (N23) / ss-arbre tjr dessiné de la même façon (21-31 / 11-23)
 D -> père centré (N11, N12) / noeuds fils homogènes (21->25) / compacte
-           
-(on part du principe qu'on ne fait pas les algos existants)
 
 -------------------------------------------------------------
 ***Paramètres -> E
@@ -18,15 +20,11 @@ NX = utilisable par tous + utile pour annotation
 
 ***Grammaires :
 Str -> D
-label = peut apparaître plusieurs fois -> forcément un arbre
 parenthèses définissent structure de l'arbre
 
 DOT -> E
-id unique à un noeud -> graphe potentiel
 
 XML -> D
-Structure d'arbre classique 
-  + tag pour info supplémentaire si on veut
 
 ***Calculs coord :
 Structure de données -> D
@@ -37,10 +35,11 @@ largeur = x max de l'arbre
 
 Algo -> E
 
+Sorties -> E
+
 -------------------------------------------------------------
 ***Perf -> D
 10⁶ noeuds en 100aine de sec
-Générateurs : parcours en prof + génération progressive de la sortie
 
 -------------------------------------------------------------
 Rendu + Conclusion -> E
@@ -59,4 +58,4 @@ tikz limité
 graphviz a ses propres politiques de placement
 
 ***Conclusion
-
+Trop grand = n>100 000

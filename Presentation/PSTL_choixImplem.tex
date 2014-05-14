@@ -1,98 +1,141 @@
 \section{Implémentation}
 
 \subsection{Fonctionnement général}
-%
-%\begin{frame}
-%    \frametitle{Paramètres}
-%    Entrées prises en compte :
-%    \begin{itemize}
-%        \item Mots bien parenthésés
-%        \item XML
-%        \item DOT %avec l'hypothèse que le graphe représenté est un arbre
-%    \end{itemize}
-%    Sorties prises en compte :
-%    \begin{itemize}
-%        \item TikZ %(module \LaTeX )
-%        \item Asymptote %(alternative à TikZ)
-%        \item NetworkX + Matplotlib %(génère une image ou un PDF en Python)
-%    \end{itemize}
-%\end{frame}
+
+\begin{frame}
+    \frametitle{Paramètres}
+    Entrées prises en compte :
+    \begin{itemize}
+        \item Mots bien parenthésés
+        \item XML
+        \item DOT %avec l'hypothèse que le graphe représenté est un arbre
+    \end{itemize}
+    Sorties prises en compte :
+    \begin{itemize}
+        \item TikZ %(module \LaTeX )
+        \item Asymptote %(alternative à TikZ)
+        \item NetworkX + Matplotlib %(génère une image ou un PDF en Python)
+    \end{itemize}
+\end{frame}
 
 \subsection{Parsing}
 
 \begin{frame}[fragile]
     \frametitle{Mots bien parenthésés}
     \begin{block}{Grammaire respectée}
-    \begin{verbatim}
+    \begin{alltt}
         ARBRE : '(' LABEL NOEUDS ')'
-        NOEUDS : ARBRE NOEUDS | e
-        LABEL : [a-zA-Z1-9]* | e
-    \end{verbatim}
+        NOEUDS : ARBRE NOEUDS | \(\epsilon\)
+        LABEL : [a-zA-Z1-9]* | \(\epsilon\)
+    \end{alltt}
     \end{block}
     \begin{exampleblock}{Exemple}
-    L'arbre \includegraphics[width=2cm]{illuGramm} est représenté par (()(())).
+    \begin{columns}[t]
+	    \column{.2\textwidth}
+		\column{.5\textwidth}
+		Le parsing de \\
+		\centering
+	    \begin{alltt}
+	    (()(()))
+	    \end{alltt}
+		\column{.5\textwidth}
+		donne l'arbre\\
+		~\\
+		\includegraphics[width=2cm]{illuGramm}
+		\end{columns}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
     \frametitle{DOT}
+    Support d'un sous-langage de DOT.\\
     \begin{block}{Grammaire respectée}
-    \begin{verbatim}
+    \begin{alltt}
     DOT : STRICT GRAPH ID '{' SEQINST '}'
-    STRICT : strict | e
+    STRICT : strict | \(\epsilon\)
     GRAPH = digraph | graph
-    SEQINST : INST ';' SEQINST | e
+    SEQINST : INST ';' SEQINST | \(\epsilon\)
     INST : ID '[' label = "LABEL" ']' | ID LINK ID
     LINK : -- | ->
     ID : [0-9]*
-    LABEL : [a-zA-Z1-9]* | e
-    \end{verbatim}
+    LABEL : [a-zA-Z1-9]* | \(\epsilon\)
+    \end{alltt}
     \end{block}
     \begin{exampleblock}{Exemple}
-    L'arbre \includegraphics[width=2cm]{illuGramm} est représenté par :
-    \begin{verbatim}
-    digraph {
-    1 [label=""];
-    2 [label=""];
-    3 [label=""];
-    4 [label=""];
-    1 -> 2;
-    2 -> 3;
-    3 -> 4;
-    }
-    \end{verbatim}
+	    \begin{columns}[t]
+	    \column{.2\textwidth}
+		\column{.5\textwidth}
+		Le parsing de \\
+		\centering
+		\begin{alltt}
+	    digraph {
+	    1 [label=""];
+	    2 [label=""];
+	    3 [label=""];
+	    4 [label=""];
+	    1 -> 2;
+	    2 -> 3;
+	    3 -> 4;
+	    }
+		\end{alltt}
+		\column{.5\textwidth}
+		donne l'arbre\\
+		~\\
+		\includegraphics[width=2cm]{illuGramm}
+		\end{columns}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
     \frametitle{XML}
+    Support d'un sous-langage de XML.\\
     \begin{block}{Grammaire respectée}
-    \begin{verbatim}
+    \begin{alltt}
     XML : <?xml version="1.0"?><tree> NOEUDS </tree>
-    NOEUDS : NOEUD NOEUDS | e
-    NOEUD : <node type=TAG id=ID> NOEUDS </noeud>
+    NOEUDS : NOEUD NOEUDS | \(\epsilon\)
+    NOEUD : <node type=TAG id=ID> NOEUDS </node>
             | <leaf type=TAG id=ID />
     TAG : " [a-zA-Z1-9]* "
     ID : [0-9]*
-    \end{verbatim}
+    \end{alltt}
     \end{block}
     \begin{exampleblock}{Exemple}
-    L'arbre \includegraphics[width=2cm]{illuGramm} est représenté par :
-    \begin{verbatim}
-    <?xml version="1.0"?>
-    <tree>
-        <node type="" id=1>
-            <leaf type="" id=2 />
-            <node type="" id=3>
-                <leaf type="" id=4 />
-            </node>
-    	    </node>
-    <tree>
-    \end{verbatim}
+	    \begin{columns}[t]
+		\column{.6\textwidth}
+		Le parsing de \\
+		\centering
+	    \begin{alltt}
+	    <?xml version="1.0"?>
+	    <tree>
+	        <node type="" id=1>
+	            <leaf type="" id=2 />
+	            <node type="" id=3>
+	                <leaf type="" id=4 />
+	            </node>
+	    	    </node>
+	    </tree>
+    \end{alltt}
+		\column{.3\textwidth}
+		donne l'arbre\\
+		~\\
+		\includegraphics[width=2cm]{illuGramm}
+		\end{columns}
     \end{exampleblock}
 \end{frame}
 
 \subsection{Calcul des coordonnées}
+
+\begin{frame}
+	\frametitle{Idée générale}
+	\begin{itemize}
+		\item Deux passes sur l'arbre
+		\begin{enumerate}
+			\item Centrer les pères sur les fils + gestion des collisions
+			\item Résolution des collisions
+		\end{enumerate}
+		\item Pourquoi ? Complexité linéaire au lieu de quadratique
+	\end{itemize}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Structure de données}
@@ -105,22 +148,11 @@
 	\lstinputlisting[language=Python, firstline=43, lastline=72]{../Src/tree.py}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
-	\frametitle{Algorithme}
+\begin{frame}
+	\frametitle{Algorithme III}
 	\framesubtitle{Passe 2}
 	\lstinputlisting[language=Python, firstline=77, lastline=87]{../Src/tree.py}
 \end{frame}
-
-%\subsection{Génération de la sortie}
-%
-%\begin{frame}
-%	\frametitle{Fonctionnement}
-%	\begin{itemize}
-%		\item Parcours en profondeur
-%		\item Génération de la sortie au fur et à mesure	
-%	\end{itemize}
-%\end{frame}
-
 
 %    \subsection{Structure d'arbre}
 %    

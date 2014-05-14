@@ -1,6 +1,6 @@
 \section{État des lieux}
 
-\subsection{Principes à respecter pour un affichage élégant}
+\subsection{Contraintes à respecter pour un affichage élégant}
 
 \begin{frame}
 	\begin{center}
@@ -9,7 +9,7 @@
 				\input {Images/princ0}
 			\end{tikzpicture}%}
 		\end{figure}
-		Que faire pour améliorer cet arbre?
+		Que faire pour améliorer la visualisation de cet arbre ?
 	\end{center}
 \end{frame}
 
@@ -20,7 +20,7 @@
 				\input {Images/princ0}
 			\end{tikzpicture}%}
 		\end{figure}
-		\begin{block}{Principe 1}<2->
+		\begin{block}{Contrainte 1}<2->
 		Les arêtes de l'arbre ne doivent pas s'intersecter.
 		\end{block}
 	\end{center}
@@ -33,7 +33,7 @@
 				\input {Images/princ1}
 			\end{tikzpicture}%}
 		\end{figure}
-		\begin{block}{Principe 2}<2->
+		\begin{block}{Contrainte 2}<2->
 		Les n\oe{}uds de même profondeur doivent être dessinés sur la même ligne horizontale.
 		\end{block}
 	\end{center}
@@ -46,7 +46,7 @@
 				\input {Images/princ2}
 			\end{tikzpicture}%}
 		\end{figure}
-		\begin{block}{Principe 3}<2->
+		\begin{block}{Contrainte 3}<2->
 		Un sous-arbre doit être dessiné de la même façon, peu importe où il est placé dans l'arbre.
 		\end{block}
 	\end{center}
@@ -59,7 +59,7 @@
 				\input {Images/princ3}
 			\end{tikzpicture}%}
 		\end{figure}
-		\begin{block}{Principe 4}<2->
+		\begin{block}{Contrainte 4}<2->
 		Un n\oe{}ud parent doit être centré par rapport à ses fils.
 		\end{block}
 	\end{center}
@@ -72,7 +72,7 @@
 				\input {Images/princ4}
 			\end{tikzpicture}%}
 		\end{figure}
-		\begin{block}{Principe 5}<2->
+		\begin{block}{Contrainte 5}<2->
 		Les n\oe{}uds fils d'un n\oe{}ud père doivent être espacés de manière homogène.
 		\end{block}
 	\end{center}
@@ -85,7 +85,7 @@
 				\input {Images/princ5}
 			\end{tikzpicture}%}
 		\end{figure}
-		\begin{block}{Principe 6}<2->
+		\begin{block}{Contrainte 6}<2->
 		Les arbres doivent être dessinés de la manière la plus compacte possible.
 		\end{block}
 	\end{center}
@@ -110,7 +110,7 @@
 % 	Décrit une idée de "slot disponible"\\
 % 	Inconvénient
 % 	\begin{itemize}
-% 		\item Ne respecte que les principes 1 et 2
+% 		\item Ne respecte que les Contraintes 1 et 2
 % 	\end{itemize}
 % \end{frame}
 % 
@@ -121,7 +121,7 @@
 % 	Introduction d'un tableau de slots\\
 % 	Inconvénient
 % 	\begin{itemize}
-% 		\item Ne respecte pas les principes 4 et 5
+% 		\item Ne respecte pas les Contraintes 4 et 5
 % 	\end{itemize}
 % \end{frame}
 % 
@@ -131,7 +131,7 @@
 % 	Traitement en deux passes\\
 % 	Avantage
 % 	\begin{itemize}
-% 		\item Respecte tous les principes
+% 		\item Respecte tous les Contraintes
 % 	\end{itemize}
 % 	Inconvénient
 % 	\begin{itemize}
