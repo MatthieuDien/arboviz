@@ -69,7 +69,7 @@ def totikz() :
 	toTikz(T)
 	
 def gv() :
-	cmd=os.popen("dot -Tjpg -O XML_tests/test.dot")
+	cmd=os.popen("dot -Tplain -O XML_tests/test.dot")
 	cmd.read()
 
 nbNode=[]
@@ -104,12 +104,21 @@ execTimeXMLAsy.append(0)
 execTimeGV=[]
 execTimeGV.append(0)
 
+<<<<<<< HEAD
 nbIte=3
 nbIteNX=5
 i=1
 n=0
 
 while i<=33300 and n<=200000:
+=======
+nbIte=10
+nbIteNX=3
+i=1
+n=0
+
+while i<=20000 and n<=10000:
+>>>>>>> 24157c8605b8e91a132645d12ee23f1acbba9304
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -207,10 +216,10 @@ while i<=33300 and n<=200000:
 				#"parser= %d ; calcul= %d ; générateur= %d") %
 				#(n, 100*a/(a+b+c), 100*b/(a+b+c), 100*c/(a+b+c), 100*e/(e+b+f), 100*b/(e+b+f), 100*f/(e+b+f),))
 		
-	if i>=400:
-		i+=500
+	if i>=1900:
+		i+=100
 	else:
-		i=min(400, i+100)
+		i=min(1900, i+10)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs

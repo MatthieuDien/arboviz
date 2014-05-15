@@ -24,7 +24,7 @@ def toAsymptote (t, withLabels=False, fileName="treeAsy.tex"):
 	
 	f.write("\\begin{asy}\n") #LaTeX file doesn't compile if asy environment is written in the LaTeX file... strange!
 	f.write("size(20cm, 20cm);\n")
-	if (withLabels): # Avoid to do the test at each iteration, ever if toAsymptoteRecWith and toAsymptoteRecWithout are really similar
+	if (withLabels): # Avoid to do the test at each iteration, even if toAsymptoteRecWith and toAsymptoteRecWithout are really similar
 		toAsymptoteRecWith(t, f)
 	else:
 		toAsymptoteRecWithout (t, f)
