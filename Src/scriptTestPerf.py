@@ -104,7 +104,7 @@ execTimeXMLAsy.append(0)
 execTimeGV=[]
 execTimeGV.append(0)
 
-nbIte=10
+nbIte=3
 nbIteNX=5
 i=1
 n=0
