@@ -11,10 +11,18 @@
 
 \begin{frame}
 	\frametitle{Bilan général}
+	Meilleur cas (XML + Asymptote ou TikZ):
 	\begin{itemize}
-		\item Parser \~ X\% du temps d'exécution
-		\item Calcul des coordonnées \~ X\% du temps d'exécution
-		\item Génération de la sortie \~ X\% du temps d'exécution
+		\item Parser $\sim$ 40\% du temps d'exécution
+		\item Calcul des coordonnées $\sim$ 30\% du temps d'exécution
+		\item Génération de la sortie $\sim$ 30\% du temps d'exécution
+	\end{itemize}
+	~\\
+	Pire cas (DOT + NetworkX):
+	\begin{itemize}
+		\item Parser $\sim$ 10\% du temps d'exécution
+		\item Calcul des coordonnées $\sim$ 1\% du temps d'exécution
+		\item Génération de la sortie $\sim$ 89\% du temps d'exécution
 	\end{itemize}
 \end{frame}
 

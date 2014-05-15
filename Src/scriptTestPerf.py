@@ -104,12 +104,12 @@ execTimeXMLAsy.append(0)
 execTimeGV=[]
 execTimeGV.append(0)
 
-nbIte=10
-nbIteNX=3
+nbIte=3
+nbIteNX=5
 i=1
 n=0
 
-while i<=6000 and n<=100000:
+while i<=20000 and n<=10000:
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -140,6 +140,9 @@ while i<=6000 and n<=100000:
 		a=0
 		b=0
 		c=0
+		d=0
+		e=0
+		f=0
 		
 		print ('Parsing de l\'arbre %d...' % i)
 		
@@ -147,7 +150,7 @@ while i<=6000 and n<=100000:
 		test = timeit.Timer("xml(%d)"%i, "from __main__ import xml")
 		a=test.timeit(nbIte)*1000/nbIte
 		execTimeXML.insert(slot, a)
-		
+
 		## Création du Timer pour le parsing STR
 		#T.toStrFile("XML_tests/test")
 		#test = timeit.Timer("strp()", "from __main__ import strp")
@@ -158,25 +161,25 @@ while i<=6000 and n<=100000:
 		#test = timeit.Timer("dot()", "from __main__ import dot")
 		#execTimeDOT.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
-		print ('ComputeCoord pour l\'arbre %d...' % i)
+		#print ('ComputeCoord pour l\'arbre %d...' % i)
 		
 		# Création du Timer pour computeCoord
-		test = timeit.Timer("coord()", "from __main__ import coord")
-		b=test.timeit(nbIte)*1000/nbIte
-		execTimeCoord.insert(slot, b)
+		#test = timeit.Timer("coord()", "from __main__ import coord")
+		#b=test.timeit(nbIte)*1000/nbIte
+		#execTimeCoord.insert(slot, b)
 		
-		print ('Génération de la sortie de l\'arbre %d...' % i)
+		#print ('Génération de la sortie de l\'arbre %d...' % i)
 		
 		## Création du Timer pour TIKZ
 		#test = timeit.Timer("totikz()", "from __main__ import totikz")
 		#execTimetoTikZ.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		# Création du Timer pour ASY
-		test = timeit.Timer("toasy()", "from __main__ import toasy")
-		c=test.timeit(nbIte)*1000/nbIte
-		execTimetoAsy.insert(slot, c)
+		#test = timeit.Timer("toasy()", "from __main__ import toasy")
+		#c=test.timeit(nbIte)*1000/nbIte
+		#execTimetoAsy.insert(slot, c)
 		
-		execTimeXMLAsy.insert(slot, a+b+c)
+		#execTimeXMLAsy.insert(slot, a+b+c)
 		
 		#if n<=5000:
 			##Création du Timer pour NX
@@ -189,10 +192,17 @@ while i<=6000 and n<=100000:
 			#test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
 			#execTimetoNXsvg.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			
-		print ('Exécution de GraphViz pour l\'arbre %d...' % i)
+		#print ('Exécution de GraphViz pour l\'arbre %d...' % i)
 		
-		test = timeit.Timer("gv()", "from __main__ import gv")
-		execTimeGV.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		#test = timeit.Timer("gv()", "from __main__ import gv")
+		#execTimeGV.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		
+		#print(("Pourcentage du tps d\'exécution pour un arbre de taille %d :\n"+
+				#"meilleur cas :\n"+
+				#"parser= %d ; calcul= %d ; générateur= %d\n"+
+				#"pire cas :\n"+
+				#"parser= %d ; calcul= %d ; générateur= %d") %
+				#(n, 100*a/(a+b+c), 100*b/(a+b+c), 100*c/(a+b+c), 100*e/(e+b+f), 100*b/(e+b+f), 100*f/(e+b+f),))
 		
 	if i>=1900:
 		i+=100
