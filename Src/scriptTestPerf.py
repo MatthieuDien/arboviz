@@ -109,11 +109,7 @@ nbIteNX=5
 i=1
 n=0
 
-<<<<<<< HEAD
 while i<=300 and n<=200000:
-=======
-while i<=20000 and n<=10000:
->>>>>>> d519fad527236e387e6d90ebd7c556b48644e36a
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -154,13 +150,7 @@ while i<=20000 and n<=10000:
 		test = timeit.Timer("xml(%d)"%i, "from __main__ import xml")
 		a=test.timeit(nbIte)*1000/nbIte
 		execTimeXML.insert(slot, a)
-
-		## Création du Timer pour le parsing STR
-		#T.toStrFile("XML_tests/test")
-		#test = timeit.Timer("strp()", "from __main__ import strp")
-		#execTimeSTR.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
-<<<<<<< HEAD
 		## Création du Timer pour le parsing STR
 		#T.toStrFile("XML_tests/test")
 		#test = timeit.Timer("strp()", "from __main__ import strp")
@@ -172,12 +162,6 @@ while i<=20000 and n<=10000:
 		#test = timeit.Timer("dot()", "from __main__ import dot")
 		#e=test.timeit(nbIte)*1000/nbIte
 		#execTimeDOT.insert(slot, e)
-=======
-		## Création du Timer pour le parsing DOT
-		#T.toDotFile("XML_tests/test")
-		#test = timeit.Timer("dot()", "from __main__ import dot")
-		#execTimeDOT.insert(slot, test.timeit(nbIte)*1000/nbIte)
->>>>>>> d519fad527236e387e6d90ebd7c556b48644e36a
 		
 		print ('ComputeCoord pour l\'arbre %d...' % i)
 		
@@ -188,7 +172,7 @@ while i<=20000 and n<=10000:
 		
 		print ('Génération de la sortie de l\'arbre %d...' % i)
 		
-		## Création du Timer pour TIKZ
+		# Création du Timer pour TIKZ
 		#test = timeit.Timer("totikz()", "from __main__ import totikz")
 		#execTimetoTikZ.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
@@ -200,9 +184,10 @@ while i<=20000 and n<=10000:
 		execTimeXMLAsy.insert(slot, a+b+c)
 		
 		#if n<=5000:
-			##Création du Timer pour NX
+			# Création du Timer pour NX
 			#test = timeit.Timer("tonxpng()", "from __main__ import tonxpng")
-			#execTimetoNXpng.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
+			#f=test.timeit(nbIte)*1000/nbIte
+			#execTimetoNXpng.insert(slotNX, f)
 			#test = timeit.Timer("tonxpdf()", "from __main__ import tonxpdf")
 			#execTimetoNXpdf.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			#test = timeit.Timer("tonxeps()", "from __main__ import tonxeps")
@@ -227,7 +212,7 @@ while i<=20000 and n<=10000:
 	elif i<10:
 		i+=1
 	else:
-		i=min(1900, i+1)
+		i=min(1900, i+10)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
@@ -276,27 +261,17 @@ while i<=20000 and n<=10000:
 		  #' en fonction du nombre de noeuds de l\'arbre reçu en entrée')
 #plt.savefig("execTimeCoord.png")
 
-<<<<<<< HEAD
 fig=plt.figure(6)
 ax1 = fig.add_subplot(111)
 ax2=ax1.twinx()
 ax2.semilogy()
-ax1.plot(nbNode, execTimeGV, 'r', label='GraphVizdfgfgsdfgsdfgsdfgsdfgsdfg')
+ax1.plot(nbNode, execTimeGV, 'r', label='GraphViz')
 ax2.plot(nbNode, execTimeXMLAsy, 'b', label='TreeDisplay')
-=======
-plt.figure(6)
-plt.plot(nbNode, execTimeGV, 'r')
-plt.plot(nbNode, execTimeXMLAsy, 'b')
->>>>>>> d519fad527236e387e6d90ebd7c556b48644e36a
 plt.xlabel('Nombre de noeuds')
 plt.ylabel('Temps d\'exécution (ms)')
 plt.title('Comparaison entre la meilleure combinaison de \n'+
 		  'TreeDisplay (XML + Asymptote) et GraphViz')
-<<<<<<< HEAD
 plt.legend(loc='best')
 #ax1.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'upper left')
 #ax2.legend(('TreeDisplay'), 'upper center')
-=======
-plt.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'best')
->>>>>>> d519fad527236e387e6d90ebd7c556b48644e36a
 plt.savefig("execTimeGV.png")
