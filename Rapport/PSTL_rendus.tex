@@ -1,0 +1,67 @@
+\chapter{Comparaison des affichages}
+
+	\section{Avec labels}
+	
+\paragraph{}Nous allons à présent comparer le rendu visuel de nos différents générateurs ainsi que de GraphViz qui est de nos jours l'outil le plus utilisé.
+	
+\paragraph{GraphViz}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=10cm,height=6cm]{renduGV}
+\end{center}
+\end{figure}
+
+\paragraph{TikZ}
+
+\begin{figure}[h!] \centering \resizebox {6cm}{10cm} {
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+\input {renduTikz}
+\end{tikzpicture}}
+\end{figure}
+
+\paragraph{Asymptote}
+
+\begin{figure}[h!]
+\input{renduAsy}
+\end{figure}
+
+\paragraph{NetworkX}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=10cm,height=6cm]{renduNX}
+\end{center}
+\end{figure}
+	
+	\section{Sans labels}
+	
+\paragraph{GraphViz}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.75\columnwidth]{renduGVLabels}
+\end{center}
+\end{figure}
+
+\paragraph{TikZ}
+
+\begin{figure}[h] \centering \resizebox {!}{0.75\columnwidth} {
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+\input{renduTikzLabels}
+\end{tikzpicture}}
+\end{figure}
+
+\paragraph{Asymptote}
+
+\begin{figure}[h]
+\input{renduAsyLabels}
+\end{figure}
+
+\paragraph{NetworkX}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.75\columnwidth]{renduNXLabels}
+\end{center}
+\end{figure}

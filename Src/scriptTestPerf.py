@@ -104,12 +104,12 @@ execTimeXMLAsy.append(0)
 execTimeGV=[]
 execTimeGV.append(0)
 
-nbIte=3
-nbIteNX=5
+nbIte=10
+nbIteNX=3
 i=1
 n=0
 
-while i<=33300 and n<=100000:
+while i<=20000 and n<=10000:
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
