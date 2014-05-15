@@ -109,7 +109,7 @@ nbIteNX=5
 i=1
 n=0
 
-while i<=33300 and n<=200000:
+while i<=300 and n<=200000:
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -261,12 +261,17 @@ while i<=33300 and n<=200000:
 		  #' en fonction du nombre de noeuds de l\'arbre reçu en entrée')
 #plt.savefig("execTimeCoord.png")
 
-plt.figure(6)
-plt.plot(nbNode, execTimeGV, 'r')
-plt.plot(nbNode, execTimeXMLAsy, 'b')
+fig=plt.figure(6)
+ax1 = fig.add_subplot(111)
+ax2=ax1.twinx()
+ax2.semilogy()
+ax1.plot(nbNode, execTimeGV, 'r', label='GraphVizdfgfgsdfgsdfgsdfgsdfgsdfg')
+ax2.plot(nbNode, execTimeXMLAsy, 'b', label='TreeDisplay')
 plt.xlabel('Nombre de noeuds')
 plt.ylabel('Temps d\'exécution (ms)')
 plt.title('Comparaison entre la meilleure combinaison de \n'+
 		  'TreeDisplay (XML + Asymptote) et GraphViz')
-plt.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'best')
+plt.legend(loc='best')
+#ax1.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'upper left')
+#ax2.legend(('TreeDisplay'), 'upper center')
 plt.savefig("execTimeGV.png")
