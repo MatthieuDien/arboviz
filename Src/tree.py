@@ -95,7 +95,7 @@ class Tree(object):
 	def toDotFile (self, fileName="treeDot"):
 		f=open (fileName+".dot", "w")
 		
-		f.write("digraph {")
+		f.write("graph {")
 		self.toDotFileRec(f)
 		f.write("}")
 		
@@ -106,7 +106,7 @@ class Tree(object):
 		
 		for c in self.children:
 			c.toDotFileRec(f)
-			f.write("%d->%d;\n"%(id(self), id(c)))
+			f.write("%d--%d;\n"%(id(self), id(c)))
 		
 	def toStrFile (self, fileName="treeStr"):
 		f=open (fileName+".txt", "w")

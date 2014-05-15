@@ -17,7 +17,11 @@ This file is part of TreeDisplay.
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import xml.etree.ElementTree as etree
+try:
+    import xml.etree.cElementTree as etree
+except ImportError:
+    import xml.etree.ElementTree as etree
+#import xml.etree.ElementTree as etree
 from tree import *
 
 def xmlParser (src):
