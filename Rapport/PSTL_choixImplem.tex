@@ -27,11 +27,11 @@
 		
 \paragraph{}Le parser de mots bien parenthésés (cf. \ref{strParser}) respecte la grammaire suivante:
 		
-\begin{verbatim}
-ARBRE : '(' LABEL NOEUDS ')'
-NOEUDS : ARBRE NOEUDS | e
-LABEL : [a-zA-Z1-9]* | e
-\end{verbatim}
+\begin{alltt}
+ARBRE ::= '(' LABEL NOEUDS ')'
+NOEUDS ::= ARBRE NOEUDS | \( \epsilon \)
+LABEL ::= [a-zA-Z1-9]* | \( \epsilon \)
+\end{alltt}
 
 \paragraph{} Compte-tenu du fait qu'on veut pouvoir travailler sur des arbres de grande taille, le parser bufferise le fichier d'entrée pour ne pas saturer la mémoire en chargeant tout le fichier dans une variable.
 
@@ -39,32 +39,32 @@ LABEL : [a-zA-Z1-9]* | e
 		
 \paragraph{}Le parser dot (cf. \ref{dotParser}) parse une sous-partie du langage dot, à savoir:
 
-\begin{verbatim}
-DOT : STRICT GRAPH ID '{' SEQINST '}'
-STRICT : strict | e
-GRAPH = digraph | graph
-SEQINST : INST ';' SEQINST | e
-INST : ID '[' label = "LABEL" ']' | ID LINK ID
-LINK : -- | ->
-ID : [0-9]*
-LABEL : [a-zA-Z1-9]* | e
-\end{verbatim}
+\begin{alltt}
+DOT ::= STRICT GRAPH ID '{' SEQINST '}'
+STRICT ::= strict | \( \epsilon \)
+GRAPH ::= digraph | graph
+SEQINST ::= INST ';' SEQINST | \( \epsilon \)
+INST ::= ID '[' label = "LABEL" ']' | ID LINK ID
+LINK ::= -- | ->
+ID ::= [0-9]*
+LABEL ::= [a-zA-Z1-9]* | \( \epsilon \)
+\end{alltt}
 
 		\subsubsection*{XML}
 		
 \paragraph{}Le parser XML (cf. \ref{xmlParser})respecte la grammaire ci-dessous. Comme beaucoup de langages de programmation, Python a une librairie dédiée au XML. Nous l'avons utilisée.
 		
-\begin{verbatim}
-XML : <?xml version="1.0"?><tree> NOEUDS </tree>
-NOEUDS : NOEUD NOEUDS | e
-NOEUD : <node type=TAG id=ID> NOEUDS </noeud> | <leaf type=TAG id=ID />
-TAG : " [a-zA-Z1-9]* "
-ID : [0-9]*
-\end{verbatim}
+\begin{alltt}
+XML ::= <?xml version="1.0"?><tree> NOEUDS </tree>
+NOEUDS ::= NOEUD NOEUDS | \( \epsilon \)
+NOEUD ::= <node type=TAG id=ID> NOEUDS </noeud> | <leaf type=TAG id=ID />
+TAG ::= " [a-zA-Z1-9]* "
+ID ::= [0-9]*
+\end{alltt}
 
 		\subsubsection*{Remarques}
 
-\paragraph{} On veut pouvoir utiliser les fichiers générés par \verb|Arbogen| \cite{REF_Arbogen} \footnote{https://github.com/fredokun/arbogen} qui est un générateur d'arbre. Il nous permet de générer des arbres de grandes tailles pour nos tests. C'est en analysant les fichiers fournis par ce générateur que nous avons établi les différences d'interprétations entre \verb|LABEL|, \verb|ID| et \verb|TAG|.
+\paragraph{} On veut pouvoir utiliser les fichiers générés par \verb|Arbogen| \cite{REF_Arbogen} qui est un générateur d'arbre. Il nous permet de générer des arbres de grandes tailles pour nos tests. C'est en analysant les fichiers fournis par ce générateur que nous avons établi les différences d'interprétations entre \verb|LABEL|, \verb|ID| et \verb|TAG|.
 
 \subparagraph{}Un \verb|LABEL| est une étiquette quelconque sur un n\oe ud, qui peut apparaître à différents endroits de l'arbre. Cela nous assure qu'un mot bien parenthésés ne peut représenter qu'un arbre car seul l'arborescence des parenthèses permet de définir les arcs entre n\oe uds.
 
@@ -92,18 +92,18 @@ ID : [0-9]*
 	 & \multicolumn{2}{|c|}{root} & \multicolumn{2}{|c|}{n11} & \multicolumn{2}{|c|}{n12} & \multicolumn{2}{|c|}{n13} & \multicolumn{2}{|c|}{n21} & \multicolumn{2}{|c|}{n22} & \multicolumn{2}{|c|}{n23}\\ \hline
 	& x & y & x & y & x & y & x & y & x & y & x & y & x & y \\ \hline
 	Initialement & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Appel sur root & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Appel sur n11 & -1 & 0 & 0 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Retour sur root & -1 & 0 & 0 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Appel sur n12 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Retour sur root & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Appel sur n13 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
-	Appel sur n21 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & 0 & 2 & -1 & 0 & -1 & 0 \\ \hline
-	Retour sur n13 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & 0 & 2 & -1 & 0 & -1 & 0 \\ \hline
-	Appel sur n22 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & 0 & 2 & 1 & 2 & -1 & 0 \\ \hline
-	Retour sur n13 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & 0 & 2 & 1 & 2 & -1 & 0 \\ \hline
-	Appel sur n23 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & 0 & 2 & 1 & 2 & 2 & 2 \\ \hline
-	Retour sur n13 & -1 & 0 & 0 & 1 & 1 & 1 & -1 & 0 & 0 & 2 & 1 & 2 & 2 & 2 \\ \hline
+	Appel sur root & -1 & \textbf{0} & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Appel sur n11 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Retour sur root & -1 & \textbf{0} & \textbf{0} & \textbf{1} & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Appel sur n12 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Retour sur root & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Appel sur n13 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & -1 & 0 & -1 & 0 & -1 & 0 \\ \hline
+	Appel sur n21 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & \textbf{0} & \textbf{2} & -1 & 0 & -1 & 0 \\ \hline
+	Retour sur n13 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & \textbf{0} & \textbf{2} & -1 & 0 & -1 & 0 \\ \hline
+	Appel sur n22 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & \textbf{0} & \textbf{2} & \textbf{1} & \textbf{2} & -1 & 0 \\ \hline
+	Retour sur n13 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & \textbf{0} & \textbf{2} & \textbf{1} & \textbf{2} & -1 & 0 \\ \hline
+	Appel sur n23 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & \textbf{0} & \textbf{2} & \textbf{1} & \textbf{2} & \textbf{2} & \textbf{2} \\ \hline
+	Retour sur n13 & -1 & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{1} & -1 & 0 & \textbf{0} & \textbf{2} & \textbf{1} & \textbf{2} & \textbf{2} & \textbf{2} \\ \hline
 \end{tabular}\\
 La position ensuite calculée pour \verb|n13| est $1$. Or il y a déjà \verb|n12| à cet endroit. La première place disponible à profondeur $1$ est $2$. On va donc devoir effectuer un décalage de $1$.
 

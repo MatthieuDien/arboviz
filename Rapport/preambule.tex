@@ -11,18 +11,16 @@
 \usepackage{lscape}
 \usepackage{multicol}
 
-\bibliographystyle{plain}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% En-tête et pieds de page %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{} %supprimer pieds de page et en-tête par défaut
-\usepackage{lastpage}
-
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \fancyhf{} %supprimer pieds de page et en-tête par défaut
+% \usepackage{lastpage}
+% 
+% \renewcommand{\headrulewidth}{0.4pt}
+% \renewcommand{\footrulewidth}{0.4pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%
@@ -37,6 +35,7 @@
 \usepackage{hyperref}
 \usepackage{listings}	%code
 \usepackage{verbatim}
+\usepackage{alltt}
 \usepackage{color}
 \lstset{
   language=Python,
@@ -45,7 +44,7 @@
   breakatwhitespace=true,
   breaklines=true,
   captionpos=b,
-  commentstyle=\color{green},
+  commentstyle=\color{gray},
   deletekeywords={},
   escapeinside={},
   extendedchars=false,

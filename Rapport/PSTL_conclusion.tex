@@ -9,3 +9,5 @@
 \paragraph{}La structure choisie permet aussi de représenter des graphes. On peut donc envisager par la suite d'implémenter un algorithme de calcul de coordonnées pour les graphes. Les modules de parsing et de génération sont pleinement réutilisables.
 
 \paragraph{}La complexité en mémoire est actuellement égale à celle en temps. Cependant, on utilisant une table de hachage pour les sous-arbres, on peut devenir sous-linéaire. L'idée consiste à calculer des coordonnées relatives et lorsqu'un arbre comporte deux (ou plus) sous-arbres identiques. Le sous-arbre en question n'est sauvegarder en mémoire qu'une seule fois et la deuxième fois on ne sauvegarde qu'une référence. On calcule ensuite les coordonnées absolues lors de la génération.
+
+\paragraph{}L'algorithme de calcul de coordonnées implémenté respecte un certain nombre de contraintes que nous avons appelés \emph{principes}. On peut étudier un autre algorithme qui va respecter d'autres contraintes comme par exemple la minimisation de la largeur.
