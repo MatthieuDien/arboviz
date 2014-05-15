@@ -3,65 +3,65 @@
 	\section{Avec labels}
 	
 \paragraph{}Nous allons à présent comparer le rendu visuel de nos différents générateurs ainsi que de GraphViz qui est de nos jours l'outil le plus utilisé.
-	
-\paragraph{GraphViz}
 
-\begin{figure}[h!]
+\paragraph{TikZ} Nous commençons ce comparatif avec TikZ, qui offre un affichage des labels optimisés.\\
+
 \begin{center}
-\includegraphics[width=10cm,height=6cm]{renduGV}
+\resizebox {!}{7cm} {
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
+\input {renduTikzLabels}
+\end{tikzpicture}}
 \end{center}
-\end{figure}
+
+\paragraph{Asymptote} Continuons avec le deuxième format \LaTeX de notre application qu'est Asymptote.\\
+
+\begin{center}
+\input{renduAsyLabels}
+\end{center}
+
+\subparagraph{} L'avantage d'Asymptote réside dans le fait que les labels sont compilés avec \LaTeX. Voici donc un exemple supplémentaire pour montrer les possibilités offerte avec Asymptote.\\
+
+\begin{center}
+\input {renduAsyLabels}
+\end{center}
+
+\paragraph{NetworkX} Le dernier rendu, que l'on peut obtenir sous la forme de plusieurs format de fichiers est le suivant:\\
+
+\begin{center}
+\includegraphics[height=7cm]{renduNXLabels}
+\end{center}
+	
+\paragraph{GraphViz} Voici pour finir ce comparatif le rendu de GraphViz pour le même arbre.\\
+
+\begin{center}
+\includegraphics[height=7cm]{renduGVLabels}
+\end{center}
+	
+	\section{Sans labels}
 
 \paragraph{TikZ}
 
-\begin{figure}[h!] \centering \resizebox {6cm}{10cm} {
+\begin{center}
+\resizebox {!}{0.50\columnwidth} {
 \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
 \input {renduTikz}
 \end{tikzpicture}}
-\end{figure}
+\end{center}
 
 \paragraph{Asymptote}
 
-\begin{figure}[h!]
+\begin{center}
 \input{renduAsy}
-\end{figure}
+\end{center}
 
 \paragraph{NetworkX}
 
-\begin{figure}[h!]
 \begin{center}
-\includegraphics[width=10cm,height=6cm]{renduNX}
+\includegraphics[width=0.75\columnwidth]{renduNX}
 \end{center}
-\end{figure}
-	
-	\section{Sans labels}
 	
 \paragraph{GraphViz}
 
-\begin{figure}[h]
 \begin{center}
-\includegraphics[width=0.75\columnwidth]{renduGVLabels}
+\includegraphics[height=7cm]{renduGV}
 \end{center}
-\end{figure}
-
-\paragraph{TikZ}
-
-\begin{figure}[h] \centering \resizebox {!}{0.75\columnwidth} {
-\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}, node distance=1pt]
-\input{renduTikzLabels}
-\end{tikzpicture}}
-\end{figure}
-
-\paragraph{Asymptote}
-
-\begin{figure}[h]
-\input{renduAsyLabels}
-\end{figure}
-
-\paragraph{NetworkX}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=0.75\columnwidth]{renduNXLabels}
-\end{center}
-\end{figure}
