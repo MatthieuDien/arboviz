@@ -104,21 +104,12 @@ execTimeXMLAsy.append(0)
 execTimeGV=[]
 execTimeGV.append(0)
 
-<<<<<<< HEAD
 nbIte=3
 nbIteNX=5
 i=1
 n=0
 
 while i<=33300 and n<=200000:
-=======
-nbIte=10
-nbIteNX=3
-i=1
-n=0
-
-while i<=20000 and n<=10000:
->>>>>>> 24157c8605b8e91a132645d12ee23f1acbba9304
 	# Premier parsing pour récupérer la structure d'arbre
 	# pour déterminer le nombre de noeuds contenu
 	ok=True
@@ -140,11 +131,11 @@ while i<=20000 and n<=10000:
 		while slot<len(nbNode) and nbNode[slot]<n:
 			slot+=1
 		nbNode.insert(slot, n)
-		slotNX=0
-		if n<=5000:
-			while slotNX<len(nbNodeNX) and nbNodeNX[slotNX]<n:
-				slotNX+=1
-			nbNodeNX.insert(slotNX, n)
+		#slotNX=0
+		#if n<=5000:
+			#while slotNX<len(nbNodeNX) and nbNodeNX[slotNX]<n:
+				#slotNX+=1
+			#nbNodeNX.insert(slotNX, n)
 			
 		a=0
 		b=0
@@ -160,37 +151,37 @@ while i<=20000 and n<=10000:
 		a=test.timeit(nbIte)*1000/nbIte
 		execTimeXML.insert(slot, a)
 		
-		# Création du Timer pour le parsing STR
-		T.toStrFile("XML_tests/test")
-		test = timeit.Timer("strp()", "from __main__ import strp")
-		d=test.timeit(nbIte)*1000/nbIte
-		execTimeSTR.insert(slot, d)
+		## Création du Timer pour le parsing STR
+		#T.toStrFile("XML_tests/test")
+		#test = timeit.Timer("strp()", "from __main__ import strp")
+		#d=test.timeit(nbIte)*1000/nbIte
+		#execTimeSTR.insert(slot, d)
 		
-		# Création du Timer pour le parsing DOT
+		## Création du Timer pour le parsing DOT
 		T.toDotFile("XML_tests/test")
-		test = timeit.Timer("dot()", "from __main__ import dot")
-		e=test.timeit(nbIte)*1000/nbIte
-		execTimeDOT.insert(slot, e)
+		#test = timeit.Timer("dot()", "from __main__ import dot")
+		#e=test.timeit(nbIte)*1000/nbIte
+		#execTimeDOT.insert(slot, e)
 		
-		#print ('ComputeCoord pour l\'arbre %d...' % i)
+		print ('ComputeCoord pour l\'arbre %d...' % i)
 		
-		# Création du Timer pour computeCoord
-		#test = timeit.Timer("coord()", "from __main__ import coord")
-		#b=test.timeit(nbIte)*1000/nbIte
-		#execTimeCoord.insert(slot, b)
+		#Création du Timer pour computeCoord
+		test = timeit.Timer("coord()", "from __main__ import coord")
+		b=test.timeit(nbIte)*1000/nbIte
+		execTimeCoord.insert(slot, b)
 		
-		#print ('Génération de la sortie de l\'arbre %d...' % i)
+		print ('Génération de la sortie de l\'arbre %d...' % i)
 		
 		# Création du Timer pour TIKZ
 		#test = timeit.Timer("totikz()", "from __main__ import totikz")
 		#execTimetoTikZ.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		# Création du Timer pour ASY
-		#test = timeit.Timer("toasy()", "from __main__ import toasy")
-		#c=test.timeit(nbIte)*1000/nbIte
-		#execTimetoAsy.insert(slot, c)
+		test = timeit.Timer("toasy()", "from __main__ import toasy")
+		c=test.timeit(nbIte)*1000/nbIte
+		execTimetoAsy.insert(slot, c)
 		
-		#execTimeXMLAsy.insert(slot, a+b+c)
+		execTimeXMLAsy.insert(slot, a+b+c)
 		
 		#if n<=5000:
 			# Création du Timer pour NX
@@ -204,10 +195,10 @@ while i<=20000 and n<=10000:
 			#test = timeit.Timer("tonxsvg()", "from __main__ import tonxsvg")
 			#execTimetoNXsvg.insert(slotNX, test.timeit(nbIteNX)*1000/nbIteNX)
 			
-		#print ('Exécution de GraphViz pour l\'arbre %d...' % i)
+		print ('Exécution de GraphViz pour l\'arbre %d...' % i)
 		
-		#test = timeit.Timer("gv()", "from __main__ import gv")
-		#execTimeGV.insert(slot, test.timeit(nbIte)*1000/nbIte)
+		test = timeit.Timer("gv()", "from __main__ import gv")
+		execTimeGV.insert(slot, test.timeit(nbIte)*1000/nbIte)
 		
 		#print(("Pourcentage du tps d\'exécution pour un arbre de taille %d :\n"+
 				#"meilleur cas :\n"+
@@ -218,22 +209,24 @@ while i<=20000 and n<=10000:
 		
 	if i>=1900:
 		i+=100
+	elif i<10:
+		i+=1
 	else:
 		i=min(1900, i+10)
 
 # Générer 3 courbes : 1 pour comparer les parsers, une pour computeCoord,
 # une pour les générateurs
 
-plt.figure(2)
-plt.loglog()
-plt.plot(nbNode, execTimeXML, 'b')
-plt.plot(nbNode, execTimeDOT, 'r')
-plt.plot(nbNode, execTimeSTR, 'g')
-plt.xlabel('Nombre de noeuds')
-plt.ylabel('Temps d\'exécution (ms)')
-plt.title('Temps d\'exécution des parser \n en fonction du nombre de noeuds de l\'arbre à parser')
-plt.legend(("Parser XML", "Parser DOT", "Parser STR"), 'best')
-plt.savefig("execTimeParsers.png")
+#plt.figure(2)
+#plt.loglog()
+#plt.plot(nbNode, execTimeXML, 'b')
+#plt.plot(nbNode, execTimeDOT, 'r')
+#plt.plot(nbNode, execTimeSTR, 'g')
+#plt.xlabel('Nombre de noeuds')
+#plt.ylabel('Temps d\'exécution (ms)')
+#plt.title('Temps d\'exécution des parser \n en fonction du nombre de noeuds de l\'arbre à parser')
+#plt.legend(("Parser XML", "Parser DOT", "Parser STR"), 'best')
+#plt.savefig("execTimeParsers.png")
 
 #plt.figure(3)
 #plt.loglog()
@@ -268,12 +261,12 @@ plt.savefig("execTimeParsers.png")
 		  #' en fonction du nombre de noeuds de l\'arbre reçu en entrée')
 #plt.savefig("execTimeCoord.png")
 
-#plt.figure(6)
-#plt.plot(nbNodeNX, execTimeGV, 'r')
-#plt.plot(nbNodeNX, execTimeXMLAsy, 'b')
-#plt.xlabel('Nombre de noeuds')
-#plt.ylabel('Temps d\'exécution (ms)')
-#plt.title('Comparaison entre la meilleure combinaison de \n'+
-		  #'TreeDisplay (XML + Asymptote) et GraphViz')
-#plt.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'best')
-#plt.savefig("execTimeGV.png")
+plt.figure(6)
+plt.plot(nbNode, execTimeGV, 'r')
+plt.plot(nbNode, execTimeXMLAsy, 'b')
+plt.xlabel('Nombre de noeuds')
+plt.ylabel('Temps d\'exécution (ms)')
+plt.title('Comparaison entre la meilleure combinaison de \n'+
+		  'TreeDisplay (XML + Asymptote) et GraphViz')
+plt.legend(("GraphViz", "TreeDisplay (XML + Asymptote)"), 'best')
+plt.savefig("execTimeGV.png")
