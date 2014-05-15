@@ -24,9 +24,9 @@
     \frametitle{Mots bien parenthésés}
     \begin{block}{Grammaire respectée}
     \begin{alltt}
-        ARBRE : '(' LABEL NOEUDS ')'
-        NOEUDS : ARBRE NOEUDS | \(\epsilon\)
-        LABEL : [a-zA-Z1-9]* | \(\epsilon\)
+        ARBRE ::= '(' LABEL NOEUDS ')'
+        NOEUDS ::= ARBRE NOEUDS | \(\epsilon\)
+        LABEL ::= [a-zA-Z1-9]* | \(\epsilon\)
     \end{alltt}
     \end{block}
     \begin{exampleblock}{Exemple}
@@ -51,14 +51,14 @@
     Support d'un sous-langage de DOT.\\
     \begin{block}{Grammaire respectée}
     \begin{alltt}
-    DOT : STRICT GRAPH ID '{' SEQINST '}'
-    STRICT : strict | \(\epsilon\)
-    GRAPH = digraph | graph
-    SEQINST : INST ';' SEQINST | \(\epsilon\)
-    INST : ID '[' label = "LABEL" ']' | ID LINK ID
-    LINK : -- | ->
-    ID : [0-9]*
-    LABEL : [a-zA-Z1-9]* | \(\epsilon\)
+    DOT ::= STRICT GRAPH ID '{' SEQINST '}'
+    STRICT ::= strict | \(\epsilon\)
+    GRAPH ::= digraph | graph
+    SEQINST ::= INST ';' SEQINST | \(\epsilon\)
+    INST ::= ID '[' label = "LABEL" ']' | ID LINK ID
+    LINK ::= -- | ->
+    ID ::= [0-9]*
+    LABEL ::= [a-zA-Z1-9]* | \(\epsilon\)
     \end{alltt}
     \end{block}
     \begin{exampleblock}{Exemple}
@@ -68,7 +68,7 @@
 		Le parsing de \\
 		\centering
 		\begin{alltt}
-	    digraph {
+	    digraph \{
 	    1 [label=""];
 	    2 [label=""];
 	    3 [label=""];
@@ -76,7 +76,7 @@
 	    1 -> 2;
 	    2 -> 3;
 	    3 -> 4;
-	    }
+	    \}
 		\end{alltt}
 		\column{.5\textwidth}
 		donne l'arbre\\
@@ -91,12 +91,12 @@
     Support d'un sous-langage de XML.\\
     \begin{block}{Grammaire respectée}
     \begin{alltt}
-    XML : <?xml version="1.0"?><tree> NOEUDS </tree>
-    NOEUDS : NOEUD NOEUDS | \(\epsilon\)
-    NOEUD : <node type=TAG id=ID> NOEUDS </node>
+    XML ::= <?xml version="1.0"?><tree> NOEUDS </tree>
+    NOEUDS ::= NOEUD NOEUDS | \(\epsilon\)
+    NOEUD ::= <node type=TAG id=ID> NOEUDS </node>
             | <leaf type=TAG id=ID />
-    TAG : " [a-zA-Z1-9]* "
-    ID : [0-9]*
+    TAG ::= " [a-zA-Z1-9]* "
+    ID ::= [0-9]*
     \end{alltt}
     \end{block}
     \begin{exampleblock}{Exemple}
