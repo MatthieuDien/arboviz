@@ -3,7 +3,6 @@
 \subsection{Fonctionnement général}
 
 \begin{frame}
-    \frametitle{Paramètres}
 %    Entrées prises en compte :
 %    \begin{itemize}
 %        \item Mots bien parenthésés
@@ -48,11 +47,10 @@
 \end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
-    \frametitle{DOT}
-    Support d'un sous-langage de DOT.\\
+    \frametitle{Sous-langage de DOT}
     \begin{block}{Grammaire respectée}
     \begin{alltt}
-    DOT ::= STRICT GRAPH ID '{' SEQINST '}'
+    DOT ::= STRICT GRAPH ID '\{' SEQINST '\}'
     STRICT ::= strict | \(\epsilon\)
     GRAPH ::= digraph | graph
     SEQINST ::= INST ';' SEQINST | \(\epsilon\)
@@ -88,8 +86,7 @@
 \end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
-    \frametitle{XML}
-    Support d'un sous-langage de XML.\\
+    \frametitle{Sous-langage de XML}
     \begin{block}{Grammaire respectée}
     \begin{alltt}
     XML ::= <?xml version="1.0"?><tree> NOEUDS </tree>
@@ -127,6 +124,11 @@
 \subsection{Calcul des coordonnées}
 
 \begin{frame}
+	\frametitle{Structure de données}
+	\lstinputlisting[language=Python, firstline=23, lastline=37]{../Src/tree.py}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Idée générale}
 	\begin{itemize}
 		\item Deux passes sur l'arbre
@@ -138,15 +140,10 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Structure de données}
-	\lstinputlisting[language=Python, firstline=23, lastline=37]{../Src/tree.py}
-\end{frame}
-
 \begin{frame}[allowframebreaks]
 	\frametitle{Algorithme}
 	\framesubtitle{Passe 1}
-	\lstinputlisting[language=Python, firstline=43, lastline=72]{../Src/tree.py}
+	\lstinputlisting[language=Python, firstline=43, lastline=75]{../Src/tree.py}
 \end{frame}
 
 \begin{frame}

@@ -1,5 +1,4 @@
 nb lignes = 550 + 240 de test
-pourquoi python ? Proche du pseudo-code + recommandation de Genitrini
 
 ***Pourquoi ? -> D
 Exemples : arbre binaire de recherche, arbre de huffman
@@ -34,8 +33,6 @@ largeur = x max de l'arbre
   -> hauteur et largeur n'ont de sens qu'à la racine
 
 Algo -> E
-
-Sorties -> E
 
 -------------------------------------------------------------
 ***Perf -> D
