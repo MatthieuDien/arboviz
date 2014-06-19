@@ -14,3 +14,5 @@ Presentation/*.snm
 Presentation/*.vrb
 Presentation/*.toc
 Presentation/*.gz
+Presentation/*
+Rapport/*
