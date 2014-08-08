@@ -16,3 +16,5 @@ Presentation/*.toc
 Presentation/*.gz
 Presentation/*
 Rapport/*
+*~
+*.root*

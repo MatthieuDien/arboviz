@@ -1,0 +1,9 @@
+begin library "arboviz_lib"
+      files = [ "Tree.ml" "Backend.mli" "Frontend.mli" ]
+      requires = [ ]
+end
+
+begin program "arboviz"
+     files = [ "Arboviz.ml" ]
+     requires = [ "arboviz_lib" "frontends" "backends" ]
+end

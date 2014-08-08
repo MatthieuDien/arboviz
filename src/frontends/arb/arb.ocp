@@ -1,0 +1,4 @@
+begin library "arb"
+      files = [ "ArbParser.mly" "ArbLexer.mll" "ArbFrontend.ml" ]
+      requires = [ "arboviz_lib" "util_frontend" ]
+end
