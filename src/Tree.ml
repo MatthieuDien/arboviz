@@ -19,7 +19,9 @@ let rec first_pass t nexts offset depth k =
       pos.x <- place;
       pos.offset <- (max (get_in_map offset depth)
                        ((get_in_map nexts depth) -. place));
-      k ()
+      let nexts' = IntMap.add depth (pos.x+1) nexts in
+      let offset' = IntMap.add depth pos.offset offset in
+      k t
     end
   | Node (name, childs, pos) ->
     begin
