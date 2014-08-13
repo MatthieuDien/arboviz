@@ -11,67 +11,107 @@ module DotBackend : Backend =
         (pos.x *. height_unit)
         (pos.y *. width_unit)
 
-    let rec write_nodes outchan stack width_unit height_unit show_label id =
-      match stack with
-      | [] -> ()
-      | h :: t ->
-        begin
-          match h with
-          | Leaf (name, pos) ->
-            begin
-              output_string outchan ((string_of_int id) ^ " [\n");
-              (if show_label then
-                  output_string outchan ("label=\"" ^ name ^ "\""));
-              (* output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"); *)
-              output_string outchan ("\n]\n");
-              write_nodes outchan t width_unit height_unit show_label (id+1)
-            end
-          | Node (name, childs, pos) -> 
-            begin
-              output_string outchan ((string_of_int id) ^ "[\n");
-              (if show_label then
-                  output_string outchan ("label=\"" ^ name ^ "\""));
-              (* output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"); *)
-              output_string outchan ("\n]\n");
-              write_nodes outchan (childs @ t) width_unit height_unit show_label (id+1)
-            end
-        end
+    let write_nodes outchan tree width_unit height_unit show_label =
+      let current_id = 0 in
+      let fleaf = fun current_id (name, pos) ->
+       begin
+         output_string outchan ((string_of_int current_id) ^ " [\n");
+         (if show_label then
+             output_string outchan ("label=\"" ^ name ^ "\""));
+         (* output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"); *)
+         output_string outchan ("\n]\n");
+         current_id + 1
+       end
+      in
+      let fnode = fun current_id (name, _, pos) -> fleaf current_id (name, pos) in
+      ignore (Tree.prefix_fold [tree] fleaf fnode current_id)
 
-    let rec write_edges outchan stack ids cid =
-      match stack with
-      | [] -> ()
-      | h :: t ->
+    let write_edges outchan first_sons =
+      let state = [(0, List.length first_sons)],1 in
+      let fleaf = fun (ids,cid) (name, pos) ->
         begin
-          match h with
-          | Leaf (name, pos) ->
-            begin
-              let (id,c) = List.hd ids in
-              output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
-              if c = 1 then
-                write_edges outchan t (List.tl ids) (cid+1)
-              else
-                write_edges outchan t ((id, c-1) :: (List.tl ids)) (cid+1)
-            end
-          | Node (name, childs, pos) -> 
-            begin
-              let (id,c) = List.hd ids in
-              output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
-              if c = 1 then
-                write_edges outchan (childs @ t) ((cid, List.length childs)::(List.tl ids)) (cid+1)
-              else
-                write_edges outchan (childs @ t) ((cid, List.length childs)::(id,c-1)::(List.tl ids)) (cid+1)
-            end
+          let (id,c) = List.hd ids in
+          output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
+          if c = 1 then
+            (List.tl ids), (cid+1)
+          else
+           ((id, c-1) :: (List.tl ids)), (cid+1)
         end
+      in
+      let fnode = fun (ids,cid) (name, childs, pos) ->
+        begin
+          let (id,c) = List.hd ids in
+          output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
+          if c = 1 then
+            ((cid, List.length childs)::(List.tl ids)), (cid+1)
+          else
+            ((cid, List.length childs)::(id,c-1)::(List.tl ids)), (cid+1)
+        end
+      in
+      ignore (Tree.prefix_fold first_sons fleaf fnode state)
+      
+
+    (* let rec write_nodes outchan stack width_unit height_unit show_label id = *)
+    (*   match stack with *)
+    (*   | [] -> () *)
+    (*   | h :: t -> *)
+    (*     begin *)
+    (*       match h with *)
+    (*       | Leaf (name, pos) -> *)
+    (*         begin *)
+    (*           output_string outchan ((string_of_int id) ^ " [\n"); *)
+    (*           (if show_label then *)
+    (*               output_string outchan ("label=\"" ^ name ^ "\"")); *)
+    (*           (\* output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"); *\) *)
+    (*           output_string outchan ("\n]\n"); *)
+    (*           write_nodes outchan t width_unit height_unit show_label (id+1) *)
+    (*         end *)
+    (*       | Node (name, childs, pos) ->  *)
+    (*         begin *)
+    (*           output_string outchan ((string_of_int id) ^ "[\n"); *)
+    (*           (if show_label then *)
+    (*               output_string outchan ("label=\"" ^ name ^ "\"")); *)
+    (*           (\* output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"); *\) *)
+    (*           output_string outchan ("\n]\n"); *)
+    (*           write_nodes outchan (childs @ t) width_unit height_unit show_label (id+1) *)
+    (*         end *)
+    (*     end *)
+
+    (* let rec write_edges outchan stack ids cid = *)
+    (*   match stack with *)
+    (*   | [] -> () *)
+    (*   | h :: t -> *)
+    (*     begin *)
+    (*       match h with *)
+    (*       | Leaf (name, pos) -> *)
+    (*         begin *)
+    (*           let (id,c) = List.hd ids in *)
+    (*           output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n"); *)
+    (*           if c = 1 then *)
+    (*             write_edges outchan t (List.tl ids) (cid+1) *)
+    (*           else *)
+    (*             write_edges outchan t ((id, c-1) :: (List.tl ids)) (cid+1) *)
+    (*         end *)
+    (*       | Node (name, childs, pos) ->  *)
+    (*         begin *)
+    (*           let (id,c) = List.hd ids in *)
+    (*           output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n"); *)
+    (*           if c = 1 then *)
+    (*             write_edges outchan (childs @ t) ((cid, List.length childs)::(List.tl ids)) (cid+1) *)
+    (*           else *)
+    (*             write_edges outchan (childs @ t) ((cid, List.length childs)::(id,c-1)::(List.tl ids)) (cid+1) *)
+    (*         end *)
+    (*     end *)
       
 
     let write outchan tree width_unit height_unit show_label =
       output_string outchan "graph G {\n";
       output_string outchan "graph [ordering=\"out\"]\n";
-      write_nodes outchan [tree] width_unit height_unit show_label 0;
+      write_nodes outchan tree width_unit height_unit show_label;
       (match tree with
       | Leaf _ -> ()
-      | Node (_,childs,_) -> write_edges outchan childs [(0,List.length childs)] 1);
+      | Node (_,childs,_) -> write_edges outchan childs);
       output_string outchan "}\n";
       close_out outchan
-              
+
 end
