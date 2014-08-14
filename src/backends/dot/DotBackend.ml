@@ -13,7 +13,7 @@ module DotBackend : Backend =
 
     let write_nodes outchan tree width_unit height_unit show_label =
       let current_id = 0 in
-      let fleaf = fun current_id (name, pos) ->
+      let f =  fun current_id (name, _, pos) ->
        begin
          output_string outchan ((string_of_int current_id) ^ " [\n");
          (if show_label then
@@ -23,32 +23,32 @@ module DotBackend : Backend =
          current_id + 1
        end
       in
-      let fnode = fun current_id (name, _, pos) -> fleaf current_id (name, pos) in
-      ignore (Tree.prefix_fold [tree] fleaf fnode current_id)
+      ignore (Tree.prefix_fold [tree] f current_id)
 
     let write_edges outchan first_sons =
       let state = [(0, List.length first_sons)],1 in
-      let fleaf = fun (ids,cid) (name, pos) ->
-        begin
-          let (id,c) = List.hd ids in
-          output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
-          if c = 1 then
-            (List.tl ids), (cid+1)
-          else
-           ((id, c-1) :: (List.tl ids)), (cid+1)
-        end
+      let f = fun (ids,cid) (name, childs, pos) ->
+        match childs with
+        | [] ->
+          begin
+            let (id,c) = List.hd ids in
+            output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
+            if c = 1 then
+              (List.tl ids), (cid+1)
+            else
+              ((id, c-1) :: (List.tl ids)), (cid+1)
+          end
+        | _ ->
+          begin
+            let (id,c) = List.hd ids in
+            output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
+            if c = 1 then
+              ((cid, List.length childs)::(List.tl ids)), (cid+1)
+            else
+              ((cid, List.length childs)::(id,c-1)::(List.tl ids)), (cid+1)
+          end
       in
-      let fnode = fun (ids,cid) (name, childs, pos) ->
-        begin
-          let (id,c) = List.hd ids in
-          output_string outchan ((string_of_int id) ^ "--" ^ (string_of_int cid) ^ ";\n");
-          if c = 1 then
-            ((cid, List.length childs)::(List.tl ids)), (cid+1)
-          else
-            ((cid, List.length childs)::(id,c-1)::(List.tl ids)), (cid+1)
-        end
-      in
-      ignore (Tree.prefix_fold first_sons fleaf fnode state)
+      ignore (Tree.prefix_fold first_sons f state)
       
 
     (* let rec write_nodes outchan stack width_unit height_unit show_label id = *)
@@ -109,7 +109,7 @@ module DotBackend : Backend =
       output_string outchan "graph [ordering=\"out\"]\n";
       write_nodes outchan tree width_unit height_unit show_label;
       (match tree with
-      | Leaf _ -> ()
+      | Node (_,[],_) -> ()
       | Node (_,childs,_) -> write_edges outchan childs);
       output_string outchan "}\n";
       close_out outchan
