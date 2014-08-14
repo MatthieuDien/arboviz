@@ -1,5 +1,5 @@
 begin library "arboviz_lib"
-      files = [ "Tree.ml" "Backend.mli" "Frontend.mli" ]
+      files = [ "Util.ml" "MyQueue.ml" "Tree.ml" "Backend.mli" "Frontend.mli" ]
       requires = [ ]
 end
 

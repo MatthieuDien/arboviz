@@ -7,4 +7,5 @@ let () =
   let ofd = open_out "tree.dot" in
   
   let t = ArbFrontend.parse ifd in
-  DotBackend.write ofd t 0. 0. true
+  let (_, _, t') = Tree.pos_tree_of_tree t in
+  DotBackend.write ofd t' 1. 1. true

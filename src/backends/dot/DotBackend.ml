@@ -9,7 +9,7 @@ module DotBackend : Backend =
     let string_of_pos pos width_unit height_unit =
       sprintf "pos = \"%f,%f!\""
         (pos.x *. height_unit)
-        (pos.y *. width_unit)
+        ((float_of_int pos.y) *. width_unit)
 
     let write_nodes outchan tree width_unit height_unit show_label =
       let current_id = 0 in
@@ -17,8 +17,8 @@ module DotBackend : Backend =
        begin
          output_string outchan ((string_of_int current_id) ^ " [\n");
          (if show_label then
-             output_string outchan ("label=\"" ^ name ^ "\""));
-         (* output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"); *)
+             (* output_string outchan ("label=\"" ^ name ^ "\"")); *)
+             output_string outchan ((string_of_pos pos width_unit height_unit) ^ "\n]\n"));
          output_string outchan ("\n]\n");
          current_id + 1
        end
