@@ -14,3 +14,11 @@ let rec pop q =
 
 let push q x =
   {pushlist = x :: q.pushlist; poplist = q.poplist }
+
+let rec npop q n =
+  if n = 0 then
+    [],q
+  else
+    let x, q' = pop q in
+    let x', q'' = (npop q' (n-1)) in
+    x :: x', q''

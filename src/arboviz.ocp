@@ -1,3 +1,6 @@
++comp="-g"
++link="-g"
+
 begin library "arboviz_lib"
       files = [ "Util.ml" "MyQueue.ml" "Tree.ml" "Backend.mli" "Frontend.mli" ]
       requires = [ ]

@@ -1,0 +1,4 @@
+begin library "svg"
+      files = [ "SvgBackend.ml" ]
+      requires = [ "arboviz_lib" "util_backend"]
+end

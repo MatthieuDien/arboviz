@@ -5,5 +5,5 @@ end
 
 begin library "backends"
       files = []
-      requires = [ "dot" ]
+      requires = [ "dot" "svg" ]
 end
