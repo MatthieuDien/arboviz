@@ -18,11 +18,16 @@ let prefix_fold initial_stack f state =
 
 let stack_of_tree tree =
   let rec traversal to_visit visited nexts offsets =
+    
+    (* let open Printf in *)
+    (* printf "get_in_map nexts 1 %f\n" (Util.get_in_map nexts 1); *)
+
     match to_visit with
     | [] -> visited, nexts, offsets
     | (Node (name, sons, pos), depth) :: t ->
       begin
-        let open Printf in 
+
+        let open Printf in
         printf "ici name %s\n" name;
 
         match sons with
@@ -34,6 +39,10 @@ let stack_of_tree tree =
                                  ((Util.get_in_map nexts depth) -. x)) in
             let offsets' = FloatMap.add depth self_offset offsets in
             let nexts' = FloatMap.add depth (x +. 1.) nexts in
+
+            let open Printf in
+            (* printf "name %s x %f y %d \n" name x y; *)
+
             let node = Node (name, [], {x = x; y = y; offset = self_offset }) in                  
             traversal t  ((node, 0) :: visited) nexts' offsets'
           end
@@ -41,7 +50,7 @@ let stack_of_tree tree =
           begin
             let node = Node (name, [], {x = 0.; y = depth; offset = 0. }) in
             let sons_with_depth = List.map (fun x -> (x,(depth+1))) sons in
-            traversal ((List.rev sons_with_depth) @ t) ((node, List.length sons) :: visited) nexts offsets
+            traversal (sons_with_depth @ t) ((node, List.length sons) :: visited) nexts offsets
               (* TODO : supprimer list.rev et rendre le npop tail recursif *)
           end
       end
@@ -57,6 +66,11 @@ let rec npop n l =
 
 let pos_tree_of_stack state =
   let rec aux s (stack, nexts, offsets) =
+
+    let open Printf in
+    (* printf "get_in_map nexts 1 %f\n" (Util.get_in_map nexts 1); *)
+    (* printf "get_in_map offsets 1 %f\n" (Util.get_in_map offsets 1); *)
+
     match stack with
     | [] -> List.hd s
     | h :: t ->
@@ -64,8 +78,8 @@ let pos_tree_of_stack state =
         let (node, nb_sons) = h in
         let Node (name, _, pos) = node in
 
-        let open Printf in 
-        printf "aqui name %s %d \n" name nb_sons;
+        let open Printf in
+        printf "aqui name %s \n" name;
 
         let depth = pos.y in
         if nb_sons = 0 then
@@ -76,10 +90,13 @@ let pos_tree_of_stack state =
             let Node (_, _, pos_first) = List.hd sons in
             let Node (_, _, pos_last) = List.hd (List.rev sons) in
             let place = (pos_first.x +. pos_last.x ) /. 2. in
+            (* printf "place %f\n" place; *)
             let self_offset =  (max (Util.get_in_map offsets depth)
                                   ((Util.get_in_map nexts depth) -. place)) in
+            (* printf "self_offset %f \n" self_offset; *)
             let offsets' = FloatMap.add depth self_offset offsets in
             let x = place +. self_offset in
+            (* printf "x %f \n" x; *)
             let nexts' = FloatMap.add depth (x +. 1.) nexts in
             let node = Node (name, sons, {x = x; y = depth; offset = self_offset}) in
             aux (node :: s') (t, nexts', offsets')
@@ -98,8 +115,9 @@ let offsum_stack_of_tree tree =
     | [] -> visited, height, width
     | (Node (name, sons, pos), offsum) :: t ->
       begin
-        let open Printf in 
-        printf "%s offsum %f\n" name offsum;
+
+        (* let open Printf in  *)
+        (* printf "%s offsum %f\n" name offsum; *)
 
         let x = pos.x +. offsum in
         let offsum' = offsum +. pos.offset in
@@ -107,7 +125,7 @@ let offsum_stack_of_tree tree =
         let width' = max x width in
         let node = Node (name, [], {x = x; y = pos.y; offset = pos.offset}) in
         let sons_with_offsum = List.map (fun x -> (x,offsum')) sons in
-        traversal ((List.rev sons_with_offsum) @ t) ((node, List.length sons) :: visited) height' width'
+        traversal (sons_with_offsum @ t) ((node, List.length sons) :: visited) height' width'
       (* TODO : supprimer list.rev et rendre le npop tail recursif *)
       end
   in
@@ -122,8 +140,8 @@ let pos_tree_of_offsum_stack state =
         let (node, nb_sons) = h in
         let Node (name, _, pos) = node in
         
-        let open Printf in
-        printf "aqui2 name %s\n" name;
+        (* let open Printf in *)
+        (* printf "aqui2 name %s\n" name; *)
         
         if nb_sons = 0 then
           aux (node ::s) t

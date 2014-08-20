@@ -38,6 +38,7 @@ class Tree(object):
 	def computeCoord (self):
 		self.setup()
 		self.addOffsets()
+		self.display()
 		return self
 		
 	def setup (self, depth=0, nexts=None, offset=None):

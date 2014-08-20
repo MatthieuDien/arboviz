@@ -9,7 +9,7 @@ module SvgBackend : Backend =
     (* show label useless for the moment *)
     let write outchan tree width_unit height_unit show_label =
       let f () = fun (name, sons, pos) ->
-        printf "name %s x %f y %d\n" name pos.x pos.y;
+        printf "name %s x %f y %d offset %f\n" name pos.x pos.y pos.offset;
         List.iter
           (fun (Node (_, _, pos')) ->
             let s = sprintf

@@ -10,4 +10,4 @@ let () =
   let t = ArbFrontend.parse ifd in
   let (_, _, t') = Tree.pos_tree_of_tree t in
   (* let t' = Tree.pos_tree_of_tree t in *)
-  DotBackend.write ofd t' 10. 10. true
+  SvgBackend.write ofd t' 10. 10. true
