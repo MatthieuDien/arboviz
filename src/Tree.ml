@@ -1,7 +1,7 @@
 type pos = {x : float; y : int; offset : float}
 (* type pos = {mutable x : float; mutable y : float} *)
 
-type tree = Node of string * tree list * pos
+type t = Node of string * t list * pos
 
 module FloatMap = Util.FloatMap
 
@@ -17,112 +17,128 @@ let prefix_fold initial_stack f state =
   bf_rec initial_stack state
 
 let stack_of_tree tree =
-  let state = ([], FloatMap.empty, FloatMap.empty, 0) in
-  let f = fun (stack, nexts, offsets, depth) (name, sons, pos) ->
-    match sons with
-    | [] ->
+  let rec traversal to_visit visited nexts offsets =
+    match to_visit with
+    | [] -> visited, nexts, offsets
+    | (Node (name, sons, pos), depth) :: t ->
       begin
-        let y = depth in
-        let x = Util.get_in_map nexts depth in
-        let self_offset = (max (Util.get_in_map offsets depth)
-                             ((Util.get_in_map nexts depth) -. x)) in
-        let offsets' = FloatMap.add depth self_offset offsets in
-        let nexts' = FloatMap.add depth (x +. 1.) nexts in
-        let node = Node (name, [], {x = x; y = y; offset = self_offset }) in
-        
-        (* let open Printf in *)
-        (* printf "push in queue Leaf 0\n"; *)
-        
+        let open Printf in 
+        printf "ici name %s\n" name;
 
-        (* ((MyQueue.push q (node, 0)), nexts', offsets', depth) *)
-        (((node, 0) :: stack), nexts', offsets', depth)
-      end
-    | _ ->
-      begin
-        let node = Node (name, [], {x = 0.; y = depth; offset = 0. }) in
-        
-        (* let open Printf in *)
-        (* printf "push in queue Node %d\n" (List.length sons); *)
-        
-        (* ((MyQueue.push q (node, List.length sons)), nexts, offsets, depth+1) *)
-        (((node, List.length sons) :: stack), nexts, offsets, depth+1)
+        match sons with
+        | [] ->
+          begin
+            let y = depth in
+            let x = Util.get_in_map nexts depth in
+            let self_offset = (max (Util.get_in_map offsets depth)
+                                 ((Util.get_in_map nexts depth) -. x)) in
+            let offsets' = FloatMap.add depth self_offset offsets in
+            let nexts' = FloatMap.add depth (x +. 1.) nexts in
+            let node = Node (name, [], {x = x; y = y; offset = self_offset }) in                  
+            traversal t  ((node, 0) :: visited) nexts' offsets'
+          end
+        | _ ->
+          begin
+            let node = Node (name, [], {x = 0.; y = depth; offset = 0. }) in
+            let sons_with_depth = List.map (fun x -> (x,(depth+1))) sons in
+            traversal ((List.rev sons_with_depth) @ t) ((node, List.length sons) :: visited) nexts offsets
+              (* TODO : supprimer list.rev et rendre le npop tail recursif *)
+          end
       end
   in
-  prefix_fold [tree] f state
+  traversal [(tree, 0)] [] FloatMap.empty FloatMap.empty
+
+let rec npop n l =
+  if n = 0 then
+    ([],l)
+  else
+    let x,l' = npop (n-1) (List.tl l) in
+    ((List.hd l) :: x), l'
 
 let pos_tree_of_stack state =
-  let rec aux q (stack, nexts, offsets, depth) =
-    if stack = []  then
-      let res, _ = MyQueue.pop q in
-      res
-    else
+  let rec aux s (stack, nexts, offsets) =
+    match stack with
+    | [] -> List.hd s
+    | h :: t ->
       begin
-        let (node, nb_sons) = List.hd stack in
-
-        (* let open Printf in *)
-        (* printf "nb_sons : %d ; stack length : %d\n" nb_sons (List.length stack); *)
-
+        let (node, nb_sons) = h in
         let Node (name, _, pos) = node in
+
+        let open Printf in 
+        printf "aqui name %s %d \n" name nb_sons;
+
         let depth = pos.y in
         if nb_sons = 0 then
-          aux (MyQueue.push q node) ((List.tl stack), nexts, offsets, depth)
-          (* aux (node :: stack) (q', nexts, offsets, depth) *)
+          aux (node :: s) (t, nexts, offsets)
         else
           begin
-            let sons, q' = MyQueue.npop q nb_sons in
+            let sons, s' = npop nb_sons s in
             let Node (_, _, pos_first) = List.hd sons in
             let Node (_, _, pos_last) = List.hd (List.rev sons) in
-            let place = (pos_first.x +. pos_last.x ) /. (float_of_int nb_sons) in
+            let place = (pos_first.x +. pos_last.x ) /. 2. in
             let self_offset =  (max (Util.get_in_map offsets depth)
                                   ((Util.get_in_map nexts depth) -. place)) in
             let offsets' = FloatMap.add depth self_offset offsets in
             let x = place +. self_offset in
             let nexts' = FloatMap.add depth (x +. 1.) nexts in
-            let node = Node (name, sons, {x = x; y = pos.y; offset = self_offset}) in
-            aux (MyQueue.push q' node) ((List.tl stack), nexts', offsets', depth)
-            (* aux (node :: stack') (q', nexts', offsets', depth) *)
+            let node = Node (name, sons, {x = x; y = depth; offset = self_offset}) in
+            aux (node :: s') (t, nexts', offsets')
           end
       end
   in
-  aux MyQueue.empty state
+  aux [] state
 
 let first_pass tree =
   pos_tree_of_stack (stack_of_tree tree)
 
-let offsum_stack_of_tree tree = 
-  let state = ([], 0, 0., 0.) in
-  let f = fun (stack, height, width, offsum) (name, sons, pos) ->
-    let x = pos.x +. offsum in
-    let offsum' = offsum +. pos.offset in
-    let height' = pos.y in
-    let width' = x in
-    let node = Node (name, [], {x = x; y = pos.y; offset = pos.offset}) in
-    (((node, List.length sons) :: stack),
-     (max height height'),
-     (max width width'),
-     offsum')
-  in prefix_fold [tree] f state
+
+let offsum_stack_of_tree tree =
+  let rec traversal to_visit visited height width =
+    match to_visit with
+    | [] -> visited, height, width
+    | (Node (name, sons, pos), offsum) :: t ->
+      begin
+        let open Printf in 
+        printf "%s offsum %f\n" name offsum;
+
+        let x = pos.x +. offsum in
+        let offsum' = offsum +. pos.offset in
+        let height' = max pos.y height in
+        let width' = max x width in
+        let node = Node (name, [], {x = x; y = pos.y; offset = pos.offset}) in
+        let sons_with_offsum = List.map (fun x -> (x,offsum')) sons in
+        traversal ((List.rev sons_with_offsum) @ t) ((node, List.length sons) :: visited) height' width'
+      (* TODO : supprimer list.rev et rendre le npop tail recursif *)
+      end
+  in
+  traversal [(tree, 0.)] [] 0 0.
 
 let pos_tree_of_offsum_stack state =
-  let rec aux q stack =
-    if stack = [] then
-      let res, _ = MyQueue.pop q in
-      res
-    else
-      let (node, nb_sons) = List.hd stack in
-      let Node (name, _, pos) = node in
-      if nb_sons = 0 then
-        aux (MyQueue.push q node) (List.tl stack)
-      else
-        let sons, q' = MyQueue.npop q nb_sons in
-        let node = Node (name, sons, pos) in
-        aux (MyQueue.push q' node) (List.tl stack)
+  let rec aux s stack =
+    match stack with
+    | [] -> List.hd s
+    | h :: t ->
+      begin
+        let (node, nb_sons) = h in
+        let Node (name, _, pos) = node in
+        
+        let open Printf in
+        printf "aqui2 name %s\n" name;
+        
+        if nb_sons = 0 then
+          aux (node ::s) t
+        else
+          let sons, s' = npop nb_sons s in
+          let node = Node (name, sons, pos) in
+          aux (node :: s') t
+      end
   in
-  let (stack, height, width, _) = state in
-  (width, height, aux MyQueue.empty stack)
+  let (stack, height, width) = state in
+  (width, height, aux [] stack)
 
 let second_pass tree =
   pos_tree_of_offsum_stack (offsum_stack_of_tree tree)
+
 
 let pos_tree_of_tree tree =
   second_pass (first_pass tree)

@@ -8,7 +8,7 @@ open UtilFrontend
 %token COMMA RBRACKET LBRACKET EOF
 
 %start start
-%type <Tree.tree> start
+%type <Tree.t> start
 
 %%
 
