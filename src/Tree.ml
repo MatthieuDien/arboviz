@@ -16,6 +16,31 @@ let prefix_fold initial_stack f state =
   in
   bf_rec initial_stack state
 
+let stack_of_queues_of_tree tree =
+  let rec traversal to_visit current_level stack nexts offsets =
+    match to_visit with
+    | [] -> (current_level :: stack), nexts, offsets (* rappeler sur current_level ? *)
+    |  (Node (name, sons, pos), depth) :: t ->
+      begin
+        match sons with
+        | [] ->
+          begin
+            let y = depth in
+            let x = Util.get_in_map nexts depth in
+            let self_offset = (max (Util.get_in_map offsets depth)
+                                 ((Util.get_in_map nexts depth) -. x)) in
+            let offsets' = FloatMap.add depth self_offset offsets in
+            let nexts' = FloatMap.add depth (x +. 1.) nexts in
+
+            let open Printf in
+            (* printf "name %s x %f y %d \n" name x y; *)
+
+            let node = Node (name, [], {x = x; y = y; offset = self_offset }) in
+            
+            traversal t current_level stack nexts' offsets'
+          end
+
+
 let stack_of_tree tree =
   let rec traversal to_visit visited nexts offsets =
     
