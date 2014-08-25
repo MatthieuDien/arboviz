@@ -6,10 +6,11 @@ exception Empty
 
 let rec pop q =
   match q.poplist with
-  | [] -> begin 
-    try pop { pushlist = []; poplist = List.rev q.pushlist } 
-    with  _ -> raise Empty
-  end
+  | [] ->
+    begin
+      try pop { pushlist = []; poplist = List.rev q.pushlist }
+      with  _ -> raise Empty
+    end
   | x :: xs -> (x, { pushlist = q.pushlist; poplist = xs })
 
 let push q x =
@@ -22,3 +23,12 @@ let rec npop q n =
     let x, q' = pop q in
     let x', q'' = (npop q' (n-1)) in
     x :: x', q''
+
+let is_empty q = q = empty
+
+let rec fold f acc q =
+  if is_empty q then
+    acc
+  else
+    let x, q' = pop q in
+    fold f (f acc x) q'
