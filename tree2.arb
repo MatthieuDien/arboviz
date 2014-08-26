@@ -1,1 +1,16 @@
-Node0[Leaf0,Node1[Leaf1,Leaf2,Leaf3],Node2[Leaf4]]
+Node0[Leaf0,
+      Node1[Leaf1,
+            Leaf2,
+            Node2[Leaf3,
+                  Leaf4]
+           ],
+      Node3[Node4[Node5[Leaf5,
+                        Node6[Leaf6
+                             ]
+                       ]
+                 ],
+            Node7[Leaf7,
+                  Leaf8,
+                  Leaf9]
+           ]
+     ]
