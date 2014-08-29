@@ -1,3 +1,4 @@
+
 type pos = {x : float; y : int; offset : float}
 
 type t = Node of string * t list * pos
@@ -122,7 +123,7 @@ let pos_tree_of_offsum_stack state =
         let (node, nb_sons) = h in
         let Node (name, _, pos) = node in
         if nb_sons = 0 then
-          aux (node ::s) t
+          aux (node :: s) t
         else
           let sons, s' = Util.npop nb_sons s in
           let node = Node (name, sons, pos) in
