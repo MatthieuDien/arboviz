@@ -7,7 +7,7 @@ struct
   let name = "Svg Backend"
 
     (* show label useless for the moment *)
-  let write outchan tree width_unit height_unit show_label =
+  let write outchan tree width height width_unit height_unit show_label =
     let f () = fun (name, sons, pos) ->
       List.iter
         (fun (Node (_, _, pos')) ->
@@ -22,9 +22,11 @@ struct
         sons
     in
     output_string outchan "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-    output_string outchan "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n";
+    output_string outchan ("<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width =\"" ^ (string_of_float width) ^ "\" height=\"" ^ (string_of_int height) ^ "\" >\n");
     Tree.prefix_fold [tree] f ();
-    output_string outchan "</svg>\n"
+    output_string outchan "</svg>\n";
+    close_out outchan
+      
 end
   
   

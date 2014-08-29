@@ -52,7 +52,7 @@ module DotBackend : Backend =
       in
       ignore (Tree.prefix_fold first_sons f state)
       
-    let write outchan tree width_unit height_unit show_label =
+    let write outchan tree _ _ width_unit height_unit show_label =
       output_string outchan "graph G {\n";
       output_string outchan "graph [ordering=\"out\"]\n";
       write_nodes outchan tree width_unit height_unit show_label;
