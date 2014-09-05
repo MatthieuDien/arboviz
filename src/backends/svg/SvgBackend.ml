@@ -12,7 +12,7 @@ struct
       List.iter
         (fun (Node (_, _, pos')) ->
           let s = sprintf
-            "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n"
+            "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:rgb(0,0,0);stroke-width:0.1;stroke-linecap:round\" />\n"
             (pos.x *. width_unit)
             ((float_of_int pos.y) *. height_unit)
             (pos'.x *. width_unit)
