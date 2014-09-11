@@ -1,7 +1,0 @@
-digraph {
-  1 [label="BinNode"];
-  2 [label="BinNode"];
-  3 [label="BinNode"];
-  1 -> 2;
-  1 -> 3;
-}

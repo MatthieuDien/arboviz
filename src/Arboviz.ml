@@ -13,12 +13,28 @@ let () =
 
   let usage = "Usage: arboviz <opt> <input tree>" in
 
-  let banner = "Do you think that I have time to draw a banner ?" in
+  let banner = "
+
+     ====================================                  =====================================
+   //      ...:'....:'':...':......       \\\\             //                                     \\\\
+   ||    :''   ._   .  `.  \\   ,   '':    ||             ||       A                             ||
+   ||    ':  .   \" .|    \\  `>/   _.-':   || ___________ ||         R                           ||
+   ||   .:'  .`'.   `-.  '. /'  ,..  .:   ||/           \\||           B                         ||
+   ||  :'        `.    `\\| \\./   ' :      |  ___________  |             O                       ||
+   ||  :. ,,-'''''  \"-.  |   | ....:      | /           \\                 V                     ||
+   ||   '.      ..'''  `\\ :   |           ||             ||                 I                   ||
+   ||     ''''''''       \\'   |           ||             ||                   Z                 ||
+   ||                     |  =|           ||             ||                                     ||
+   ||                     |   |           ||             ||                                     ||
+   ||                     |-  |           ||             ||                                     ||
+   \\\\                                    //              \\\\                                    //
+    ======================================                ======================================\n"
+  in
 
   Arg.parse [
     ("-version", Arg.Unit
       (fun () -> printf "%s\n%!" version_str ; exit 0),
-     "print version information");
+     " : print version information");
     ("-verbose", Arg.Int
       (fun n ->
         if n < 0 then
@@ -66,7 +82,7 @@ let () =
      "<float> : set the height ratio multiplier");
     ("-s", Arg.Unit
       (fun () -> global_options.show_label <- true ),
-     "show label")
+     " : show label")
   ]
     (fun arg -> global_options.input_name <- arg)
     usage;
@@ -74,7 +90,13 @@ let () =
   if (global_options.verbosity) > 0 then
     printf "%s\n%!" banner;
 
-  let in_ext = Util.get_ext global_options.input_name in
+  let in_ext =
+    if global_options.input_name = "" then
+      "arb"
+    else
+      Util.get_ext global_options.input_name
+  in
+
   let out_ext = global_options.output_type in
 
   if not (List.exists (fun a -> a = in_ext) ["arb"]) then
@@ -83,7 +105,12 @@ let () =
       exit 1
     end;
   
-  let ifd = open_in global_options.input_name in
+  let ifd =
+    if global_options.input_name = "" then
+      stdin
+    else
+      open_in global_options.input_name
+  in
   let ofd = open_out (global_options.output_name ^ "." ^
                         global_options.output_type) in
   
