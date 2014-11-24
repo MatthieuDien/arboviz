@@ -54,7 +54,7 @@ module DotBackend : Backend =
       
     let write outchan tree width height width_unit height_unit show_label =
       output_string outchan "digraph G {\n";
-      output_string outchan "digraph [ordering=\"out\"]\n";
+      output_string outchan "graph [ordering=\"out\"]\n";
       write_nodes outchan tree width (float_of_int height) width_unit height_unit show_label;
       (match tree with
       | Node (_,[],_) -> ()
