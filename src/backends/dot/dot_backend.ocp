@@ -1,4 +1,4 @@
-begin library "dot"
+begin library "dot_backend"
       files = [ "DotBackend.ml" ]
       requires = [ "arboviz_lib" "util_backend"]
 end

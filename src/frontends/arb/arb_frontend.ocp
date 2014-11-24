@@ -1,4 +1,4 @@
-begin library "arb"
+begin library "arb_frontend"
       files = [ "ArbParser.mly" "ArbLexer.mll" "ArbFrontend.ml" ]
       requires = [ "arboviz_lib" "util_frontend" ]
 end

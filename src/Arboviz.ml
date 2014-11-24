@@ -2,6 +2,7 @@ open Printf
 open Options
 
 open ArbFrontend
+open DotFrontend
 
 open SvgBackend
 open DotBackend
@@ -114,6 +115,7 @@ let () =
   let t =
     match in_ext with
     | "arb" -> ArbFrontend.parse ifd
+    | "dot" -> DotFrontend.parse ifd                                 
     | _ -> assert false
   in
 

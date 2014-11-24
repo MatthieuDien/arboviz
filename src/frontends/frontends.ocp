@@ -5,5 +5,5 @@ end
 
 begin library "frontends"
       files = []
-      requires = [ "arb" ]
+      requires = [ "arb_frontend" "dot_frontend" ]
 end

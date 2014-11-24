@@ -1,0 +1,4 @@
+begin library "dot_frontend"
+      files = [ "DotParser.mly" "DotLexer.mll" "DotFrontend.ml" ]
+      requires = [ "arboviz_lib" "util_frontend" ]
+end
