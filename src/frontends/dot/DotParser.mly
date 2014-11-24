@@ -84,16 +84,17 @@ let make_tree nodes sons =
 %%
 
 start:
-    | DIGRAPH IDENT LBRACE graph RBRACE {
+    | DIGRAPH IDENT LBRACE graph RBRACE EOF{
                 let nodes, sons = $4 in
                 make_tree nodes sons
               }
-    | DIGRAPH LBRACE graph RBRACE {
+    | DIGRAPH LBRACE graph RBRACE EOF{
                 let nodes, sons = $3 in
                 make_tree nodes sons
               }
 
 graph:
+    | DIGRAPH attrs graph { $3 }
     | node_decl { let n = $1 in
                   ((StringSet.add n StringSet.empty), StringSet.empty)
                 }
@@ -114,13 +115,16 @@ graph:
 node_decl:
     | IDENT SEMICOLON { add_node_tbl $1 ""; $1 }
     | IDENT attrs SEMICOLON { add_node_tbl $1 $2; $1 }
+    | IDENT { add_node_tbl $1 ""; $1 }
+    | IDENT attrs { add_node_tbl $1 $2; $1 }
+
 
 arrow_decl:
     | IDENT ARROW IDENT SEMICOLON { add_arrow_tbl $1 $3; ($1, $3) }
     | IDENT ARROW IDENT attrs SEMICOLON { add_arrow_tbl $1 $3; ($1, $3) }
             
 attrs:
-    | RBRACKET attr_list LBRACKET {
+    | LBRACKET attr_list RBRACKET {
                  try
                    List.find (fun x -> if x = "" then false else true) (List.map get_lbl $2)
                  with
@@ -129,6 +133,7 @@ attrs:
 
 attr_list:
     | attr { [$1] }
+    | attr attr_list { $1 :: $2 }
     | attr COMMA attr_list { $1 :: $3}
     | attr SEMICOLON attr_list { $1 :: $3 }
 

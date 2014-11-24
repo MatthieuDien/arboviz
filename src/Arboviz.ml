@@ -97,7 +97,7 @@ let () =
 
   let out_ext = global_options.output_type in
 
-  if not (List.exists (fun a -> a = in_ext) ["arb"]) then
+  if not (List.exists (fun a -> a = in_ext) ["arb"; "dot"]) then
     begin
       eprintf "Error : not supported input file format ... aborting \n%!";
       exit 1
