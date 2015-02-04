@@ -18,3 +18,9 @@ Presentation/*
 Rapport/*
 *~
 *.root*
+_build
+configure
+setup.*
+*.js
+*.byte
+*.native

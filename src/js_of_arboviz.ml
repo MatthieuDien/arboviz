@@ -3,32 +3,50 @@
 open ArbFrontend
 open DotFrontend
 
+let error f = Printf.ksprintf (fun s -> Firebug.console##error (Js.string s); failwith s) f
+let debug f = Printf.ksprintf (fun s -> Firebug.console##log(Js.string s)) f
+let alert f = Printf.ksprintf (fun s -> Dom_html.window##alert(Js.string s); failwith s) f
+
+let (@>) s coerce = Js.Opt.get (coerce @@ Dom_html.getElementById s) (fun () -> error "can't find element %s" s)
+
+
+let parse_and_draw area canvas _ =
+  let t = ArbFrontend.parse_from_string (Js.to_string area##value) in
+  let width, height, t = Tree.pos_tree_of_tree t in
+  (* canvas##height <- height; *)
+  (* canvas##width <- (int_of_float width); *)
+  let ctx = canvas##getContext (Dom_html._2d_) in
+  (* ctx##beginPath(); *)
+  (* ctx##moveTo(10., 10.); *)
+  (* ctx##lineTo(30.,30.); *)
+  (* ctx##closePath(); *)
+  debug "%d %f" height width;
+  let open Tree in
+  let rec draw father_pos (Node (s, childrens, pos)) =
+    ctx##beginPath();
+    ctx##moveTo(pos.x, float_of_int pos.y);
+    begin match father_pos with
+        None -> () | Some p -> ctx##lineTo(p.x, float_of_int p.y);
+    end;
+    ctx##stroke();
+    ctx##closePath();
+    List.iter (draw (Some pos)) childrens
+  in
+  draw None t;
+  Js._true
 
 
 
+(* type t = Node of string * t list * pos *)
 
 
 
-
-
-let onload _ =
+let _ =
   let open Dom_html in
-  let area = createTextarea document in
-  let compute_button = createButton document in
-  Dom.appendChild document##body area;
-  area##rows <- 80;
-  area##cols <- 80;
-  Dom.appendChild document##body compute_button;
-  compute_button##onclick <- handler (fun _ ->
-      let _ = Firebug.console##log (Js.string "lol") in
-      let _ = Firebug.console##log (area##text) in
-      Js._true
-    );
-  compute_button##innerHTML <- Js.string"Compute";
-  Js._false
-
-
-
-
-
-let _ = Dom_html.window##onload <- Dom_html.handler onload
+  window##onload <- handler (fun _ ->
+      let area = "tarea" @> CoerceTo.textarea in
+      let compute_btn = "compute_button" @> CoerceTo.button in
+      let c = "canvas" @> CoerceTo.canvas in
+      compute_btn##onclick <- (handler @@ parse_and_draw area c);
+      Js._false
+    )
