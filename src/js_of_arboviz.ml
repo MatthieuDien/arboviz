@@ -10,11 +10,13 @@ let alert f = Printf.ksprintf (fun s -> Dom_html.window##alert(Js.string s); fai
 let (@>) s coerce = Js.Opt.get (coerce @@ Dom_html.getElementById s) (fun () -> error "can't find element %s" s)
 
 
+let fact = 1.
+
 let parse_and_draw area canvas _ =
   let t = ArbFrontend.parse_from_string (Js.to_string area##value) in
   let width, height, t = Tree.pos_tree_of_tree t in
-  (* canvas##height <- height; *)
-  (* canvas##width <- (int_of_float width); *)
+  canvas##height <- height * (1 + (int_of_float fact));
+  canvas##width <- int_of_float @@ width *. fact;
   let ctx = canvas##getContext (Dom_html._2d_) in
   (* ctx##beginPath(); *)
   (* ctx##moveTo(10., 10.); *)
@@ -24,9 +26,9 @@ let parse_and_draw area canvas _ =
   let open Tree in
   let rec draw father_pos (Node (s, childrens, pos)) =
     ctx##beginPath();
-    ctx##moveTo(pos.x, float_of_int pos.y);
+    ctx##moveTo(fact *. pos.x, fact *. float_of_int pos.y);
     begin match father_pos with
-        None -> () | Some p -> ctx##lineTo(p.x, float_of_int p.y);
+        None -> () | Some p -> ctx##lineTo(fact *. p.x, fact *. float_of_int p.y);
     end;
     ctx##stroke();
     ctx##closePath();
@@ -34,11 +36,6 @@ let parse_and_draw area canvas _ =
   in
   draw None t;
   Js._true
-
-
-
-(* type t = Node of string * t list * pos *)
-
 
 
 let _ =
