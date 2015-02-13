@@ -1,0 +1,81 @@
+
+OASISFormat: 0.4
+Name:        lang
+Version:     0.01
+Synopsis:    implementation and experimentation for library or language lang
+Authors:     Remy El Sibaïe
+License:     LGPL
+Plugins:     META (0.4), DevFiles (0.4)
+BuildTools:  ocamlbuild
+
+
+Library "arboviz_lib"
+  Path: src/
+  Modules: Util, MyQueue, Tree, Options
+
+Library "util_frontend"
+  Path: src/frontends
+  Modules: UtilFrontend
+  BuildDepends:
+    arboviz_lib
+
+Library "frontend_arb"
+  Path: src/frontends/arb
+  Modules: ArbFrontend
+  BuildDepends: 
+    arboviz_lib,
+    util_frontend
+  
+Library "frontend_dot"
+  Path: src/frontends/dot
+  Modules: DotFrontend
+  BuildDepends: 
+    arboviz_lib,
+    util_frontend
+  
+Library "util_backend"
+  Path: src/backends
+  Modules: UtilBackend
+  BuildDepends:
+    arboviz_lib
+
+Library "backend_dot"
+  Path: src/backends/dot
+  Modules: DotBackend
+  BuildDepends: 
+    arboviz_lib,
+    util_backend
+  
+Library "backend_svg"
+  Path: src/backends/svg/
+  Modules: SvgBackend
+  BuildDepends: 
+    arboviz_lib,
+    util_backend
+  
+Executable "arboviz"
+  Path:       src
+  MainIs:     Arboviz.ml
+  CompiledObject: best
+  BuildDepends:
+    arboviz_lib,
+    frontend_arb,
+    frontend_dot,
+    backend_svg,
+    backend_dot
+
+Executable "js_of_arboviz"
+  Path:       src
+  MainIs:     js_of_arboviz.ml
+  CompiledObject: byte
+  BuildDepends:
+    arboviz_lib,
+    frontend_arb,
+    frontend_dot,
+    backend_svg,
+    backend_dot,
+    js_of_ocaml,
+    js_of_ocaml.syntax
+    
+
+PostBuildCommand: js_of_ocaml js_of_arboviz.byte

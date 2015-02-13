@@ -1,9 +1,0 @@
-begin library "util_frontend"
-      files = [ "UtilFrontend.ml" ]
-      requires = [ "arboviz_lib" ]
-end
-
-begin library "frontends"
-      files = []
-      requires = [ "arb_frontend" "dot_frontend" ]
-end

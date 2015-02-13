@@ -9,5 +9,10 @@ module ArbFrontend : Frontend =
       let res = ArbParser.start ArbLexer.token lexbuf in
       close_in inchan;
       res
-  end
 
+    let parse_from_string s =
+      let lexbuf = Lexing.from_string s in
+      let res = ArbParser.start ArbLexer.token lexbuf in
+      res
+
+  end

@@ -1,0 +1,19 @@
+PRJ arboviz
+
+B _build/
+B _build/src
+B _build/src/backends
+B _build/src/backends/dot
+B _build/src/backends/svg
+B _build/src/frontends
+B _build/src/frontends/dot
+B _build/src/frontends/arb
+
+
+S src/
+S src/backends
+S src/backends/dot
+S src/backends/svg
+S src/frontends
+S src/frontends/dot
+S src/frontends/arb
