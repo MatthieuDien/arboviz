@@ -3,12 +3,12 @@ open DotParser
 }
 
 let ident = ['A'-'Z' 'a'-'z' '0'-'9']['_' 'A'-'Z' 'a'-'z' '0'-'9']*
-let str = '"' ['a'-'z' 'A'-'Z' '0'-'9' '-' '_' '!' '.' ',' ';' ]* '"'
-let equal = '='                                                                 
+let str = '"' ['a'-'z' 'A'-'Z' '0'-'9' '-' '_' '!' '.' ',' ';' ' ' ')' '(']* '"'
+let equal = '='
 let lbracket = '['
 let rbracket = ']'
 let lbrace = '{'
-let rbrace = '}'               
+let rbrace = '}'
 let comma = ','
 let semicolon = ';'
 let arrow = "->"

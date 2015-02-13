@@ -12,3 +12,10 @@
                      |-  |
 
 </pre>
+
+
+
+
+Fixes :
+* print localisation error on dot files
+* if the outchannel is stdin the file format is "arb"

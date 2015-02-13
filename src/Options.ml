@@ -5,7 +5,8 @@ type options_record = {
   mutable width_ratio : float;
   mutable height_ratio : float;
   mutable show_label : bool;
-  mutable input_name : string
+  mutable input_name : string;
+  mutable input_type : string
 }
 
 let global_options = {
@@ -15,5 +16,6 @@ let global_options = {
   width_ratio = 1. ;
   height_ratio = 1. ;
   show_label = false ;
-  input_name = "" 
+  input_name = "";
+  input_type = ""
 }

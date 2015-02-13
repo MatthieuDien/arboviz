@@ -47,14 +47,28 @@ let () =
       (fun x ->
         if List.exists (fun a -> a = x)
           ["svg"; "dot"]
-        then
+        then begin
           global_options.output_type <- x
+        end
         else
           begin
             eprintf "Error format %s not supported ... aborting\n%!" x;
             exit 1
           end),
      "[svg, dot] : output format");
+    ("-I", Arg.String
+      (fun x ->
+        if List.exists (fun a -> a = x)
+          ["arb"; "dot"]
+        then begin
+          global_options.input_type <- x
+        end
+        else
+          begin
+            eprintf "Error format %s not supported ... aborting\n%!" x;
+            exit 1
+          end),
+     "[svg, arb] : input format");
     ("-o", Arg.String
       (fun x -> global_options.output_name <- x),
      "<name> : name of the output file");
@@ -89,10 +103,12 @@ let () =
     printf "%s\n%!" banner;
 
   let in_ext =
-    if global_options.input_name = "" then
-      "arb"
-    else
-      Util.get_ext global_options.input_name
+    if global_options.input_type = "" then
+      if global_options.input_name = "" then
+        "arb"
+      else
+        Util.get_ext global_options.input_name
+    else global_options.input_type
   in
 
   let out_ext = global_options.output_type in
@@ -102,7 +118,7 @@ let () =
       eprintf "Error : not supported input file format ... aborting \n%!";
       exit 1
     end;
-  
+
   let ifd =
     if global_options.input_name = "" then
       stdin
@@ -111,24 +127,25 @@ let () =
   in
   let ofd = open_out (global_options.output_name ^ "." ^
                         global_options.output_type) in
-  
+
   let t =
     match in_ext with
-    | "arb" -> ArbFrontend.parse ifd
-    | "dot" -> DotFrontend.parse ifd                                 
+    | "arb" ->  ArbFrontend.parse ifd;
+    | "dot" -> DotFrontend.parse ifd
     | _ -> assert false
   in
+
 
   let width, height, t' = Tree.pos_tree_of_tree t in
 
   let write =
     match out_ext with
-    | "svg" -> SvgBackend.write 
+    | "svg" -> SvgBackend.write
     | "dot" -> DotBackend.write
     | _ -> assert false
   in
-  
-  write ofd t' width height 
+
+  write ofd t' width height
     global_options.width_ratio
     global_options.height_ratio
     global_options.show_label;
